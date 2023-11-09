@@ -1,9 +1,17 @@
+import { useState } from "react";
 import "./App.css";
+import Header from "./components/Header";
+import LocationInput from "./components/LocationInput";
 
 function App() {
+  const [location, setLocation] = useState("");
+
   return (
     <div className="p-4">
-      <h1>Work in progress</h1>
+      <Header />
+
+      <LocationInput saveLocation={setLocation} />
+      <p>Selected location: {location}</p>
     </div>
   );
 }
