@@ -6,10 +6,7 @@ export default function WeatherDetail(props) {
       <props.icon className="w-4 h-auto my-auto" />
 
       <div className="align-baseline mb-0">{props.name}</div>
-
-      <div className="col-start-2 text-lg font-bold">
-        {props.value}
-      </div>
+      <div className="col-start-2 text-lg font-bold">{props.value}</div>
     </div>
   );
 }
@@ -17,5 +14,5 @@ export default function WeatherDetail(props) {
 WeatherDetail.propTypes = {
   icon: PropTypes.elementType,
   name: string,
-  value: string
-}
+  value: string,
+};
