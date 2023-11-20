@@ -5,6 +5,8 @@ import LocationInput from "./components/LocationInput";
 import Location from "./components/Location";
 import WeatherDetailsArea from "./components/WeatherDetailsArea";
 import CurrentWeatherArea from "./components/CurrentWeatherArea";
+import TemperatureArea from "./components/TemperatureArea";
+import AlertsArea from "./components/AlertsArea";
 
 function App() {
   const [location, setLocation] = useState("");
@@ -26,6 +28,17 @@ function App() {
       <br />
 
       <CurrentWeatherArea />
+      <br />
+      <br />
+
+      <TemperatureArea maxTemp="20º C" minTemp="5º C" />
+
+      <br /><br />
+
+      <AlertsArea />
+
+      <br /><br />
+      
     </div>
   );
 }
