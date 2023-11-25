@@ -7,6 +7,7 @@ import WeatherDetailsArea from "./components/WeatherDetailsArea";
 import CurrentWeatherArea from "./components/CurrentWeatherArea";
 import TemperatureArea from "./components/TemperatureArea";
 import AlertsArea from "./components/AlertsArea";
+import ForecastArea from "./components/ForecastArea";
 
 function App() {
   const [location, setLocation] = useState("");
@@ -39,6 +40,7 @@ function App() {
 
       <br /><br />
       
+      <ForecastArea />
     </div>
   );
 }
