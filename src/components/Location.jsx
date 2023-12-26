@@ -8,7 +8,7 @@ export default function Location({ locationName }) {
 
       <div className="align-baseline">{locationName}</div>
 
-      <div className="col-start-2 text-xs font-bold uppercase">
+      <div className="col-start-2 text-xs font-bold uppercase text-white/50">
         Edit location
       </div>
     </div>
