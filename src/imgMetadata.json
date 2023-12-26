@@ -1,0 +1,94 @@
+{
+    "sunny": {
+        "day": [
+            {
+                "path": "/imgMetadata/sunny/day/ben-collins-VOduaHPrLrs-unsplash.jpg",
+                "imgsrc": "https://unsplash.com/photos/green-grass-field-under-blue-sky-during-daytime-VOduaHPrLrs",
+                "authorname": "Ben Collins",
+                "authorlink": "https://unsplash.com/@bencollins"
+            }
+        ],
+        "night": [
+            {
+                "path": "/imgMetadata/sunny/night/henry-be-TSw0ua31yeQ-unsplash.jpg",
+                "imgsrc": "https://unsplash.com/photos/landscape-photography-of-mountain-range-at-night-TSw0ua31yeQ",
+                "authorname": "Henry Be",
+                "authorlink": "https://unsplash.com/@henry_be"
+            }
+        ]
+    },
+    "partlycloudy":  {
+        "day": [
+            {
+                "path": "/imgMetadata/partlycloudy/day/peter-robbins-2anjW-hOiY0-unsplash.jpg",
+                "imgsrc": "https://unsplash.com/photos/a-view-of-a-mountain-range-with-trees-in-the-foreground-2anjW-hOiY0",
+                "authorname": "Peter Robbins",
+                "authorlink": "https://unsplash.com/@stonedrake33148"
+            }
+        ],
+        "night": [
+
+        ]
+    },
+    "cloudy": {
+        "day": [
+
+        ],
+        "night": [
+
+        ]
+    },
+    "foggy": {
+        "day": [
+            {
+                "path": "/imgMetadata/foggy/day/NOAA.jpg",
+                "imgsrc": "https://unsplash.com/photos/green-trees-on-mountain-under-cloudy-sky-during-daytime-kcvlb727mn8",
+                "authorname": "NOAA",
+                "autorlink": "https://unsplash.com/@noaa"
+            }
+        ],
+        "night": [
+
+        ]
+    },
+    "drizzle": {
+        "day": [
+
+        ],
+        "night": [
+
+        ]
+    },
+    "rain": {
+        "day": [
+
+        ],
+        "night": [
+
+        ]
+    },
+    "snow": {
+        "day": [
+
+        ],
+        "night": [
+
+        ]
+    },
+    "showers": {
+        "day": [
+
+        ],
+        "night": [
+
+        ]
+    },
+    "thunderstorm": {
+        "day": [
+
+        ],
+        "night": [
+
+        ]
+    }
+}

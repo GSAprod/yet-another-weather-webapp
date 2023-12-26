@@ -2,8 +2,8 @@ import CloudSunIcon from "../assets/icons/weather/cloud-sun.svg?react";
 
 export default function CurrentWeatherArea() {
   return (
-    <div className="flex flex-col items-center">
-      <p className="mb-4 text-lg">Sunday, November 12</p>
+    <div className="col-span-3 flex flex-col items-center">
+      <p className="mt-10 mb-4 text-lg">Sunday, November 12</p>
 
       <div className="text-8xl font-bold mb-2">18º C</div>
 
