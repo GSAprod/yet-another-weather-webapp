@@ -5,7 +5,7 @@ export default function AlertsArea() {
     <div className="flex gap-3 justify-end">
       <div>No warnings issued</div>
 
-      <CheckSquareIcon className="w-4 h-auto my-auto" />
+      <CheckSquareIcon className="w-4 h-auto my-auto fill-white" />
     </div>
   );
 }

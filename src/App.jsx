@@ -16,14 +16,14 @@ function App() {
   const [location, setLocation] = useState("Lisbon, Portugal");
 
   function getBackgroundImage() {
-    return imgMetadata.sunny.day[0].path;
+    return imgMetadata.foggy.day[0].path;
   }
 
-  console.log(import.meta.env.VITE_PUBLIC_URL + getBackgroundImage(""))
+  console.log(import.meta.env.VITE_PUBLIC_URL + getBackgroundImage(""));
 
   return (
     <div
-      className="p-6 border-box h-full flex flex-col justify-between bg-cover"
+      className="webapp-container p-6 border-box h-full flex flex-col justify-between bg-cover"
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
       <div className="grid grid-cols-5">
         <div className="flex flex-col gap-10">

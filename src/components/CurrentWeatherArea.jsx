@@ -8,7 +8,7 @@ export default function CurrentWeatherArea() {
       <div className="text-8xl font-bold mb-2">18º C</div>
 
       <div className="flex items-center gap-2">
-        <CloudSunIcon className="h-16 w-auto" />
+        <CloudSunIcon className="h-16 w-auto fill-white" />
 
         <div className="text-5xl">Cloudy</div>
       </div>

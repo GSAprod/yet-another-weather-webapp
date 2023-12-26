@@ -5,7 +5,7 @@ export default function Forecast() {
     <div className="flex flex-col items-center">
       <div>Sat</div>
 
-      <CloudFogIcon className="w-9 h-auto my-3" />
+      <CloudFogIcon className="w-9 h-auto my-3 fill-white" />
 
       <div className="font-bold text-lg mb-1">21º C</div>
 
