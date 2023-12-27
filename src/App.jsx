@@ -25,30 +25,29 @@ function App() {
     <div
       className="webapp-container p-6 border-box h-full flex flex-col justify-between bg-cover"
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
-      <div className="grid grid-cols-5">
-        <div className="flex flex-col gap-10">
-          <Location locationName={location} />
-
-          <WeatherDetailsArea />
-        </div>
+      <div className="grid grid-cols-5 gap-y-10">
+        <Location locationName={location} />
 
         <CurrentWeatherArea />
 
-        <div className="flex flex-col gap-10">
-          <TemperatureArea maxTemp="20º C" minTemp="5º C" />
-          <AlertsArea />
-        </div>
+        <TemperatureArea maxTemp="20º C" minTemp="5º C" />
+
+        <WeatherDetailsArea />
+
+        <AlertsArea />
       </div>
 
       <div className="grid grid-cols-5">
-        <div className="flex flex-col justify-end">
+        <div className="flex flex-col justify-end gap-1 max-sm:invisible">
           <ApiCredits />
           <UnsplashCredits />
         </div>
 
         <ForecastArea />
 
-        <SettingsButton />
+        <div className="self-end justify-self-end">
+          <SettingsButton />
+        </div>
       </div>
     </div>
   );
