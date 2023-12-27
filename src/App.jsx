@@ -19,22 +19,30 @@ function App() {
     return imgMetadata.foggy.day[0].path;
   }
 
-  console.log(import.meta.env.VITE_PUBLIC_URL + getBackgroundImage(""));
-
   return (
     <div
       className="webapp-container p-6 border-box h-full flex flex-col justify-between bg-cover"
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
-      <div className="grid grid-cols-5 gap-y-10">
-        <Location locationName={location} />
+      <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
+        <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
+          <Location locationName={location} />
+        </div>
+        
+        <div className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 max-md:col-span-2">
+          <CurrentWeatherArea />
+        </div>
 
-        <CurrentWeatherArea />
+        <div className="max-md:order-2 max-md:col-span-2">
+          <TemperatureArea maxTemp="20º C" minTemp="5º C" />
+        </div>
 
-        <TemperatureArea maxTemp="20º C" minTemp="5º C" />
+        <div className="max-md:order-2 max-md:col-span-2 max-md:flex max-md:justify-center">
+          <WeatherDetailsArea />
+        </div>
 
-        <WeatherDetailsArea />
-
-        <AlertsArea />
+        <div className="max-md:order-1 max-sm:hidden">
+          <AlertsArea />
+        </div>
       </div>
 
       <div className="grid grid-cols-5">

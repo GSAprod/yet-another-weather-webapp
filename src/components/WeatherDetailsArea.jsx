@@ -7,7 +7,7 @@ import WeatherDetail from "./WeatherDetail";
 
 export default function WeatherDetailsArea() {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 max-md:items-left max-md:inline-flex max-md:gap-1">
       <WeatherDetail icon={WaterDropIcon} name="Humidity" value="85%" />
       <WeatherDetail icon={WindIcon} name="Wind speed" value="20 km/h (NW)" />
       <WeatherDetail icon={UmbrellaIcon} name="Chance of rain" value="8%" />

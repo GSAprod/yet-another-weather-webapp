@@ -3,8 +3,8 @@ import { string } from "prop-types";
 
 export default function Location({ locationName }) {
   return (
-    <div className="w-fit h-fit grid grid-cols-[auto auto] gap-x-2">
-      <MapPinIcon className="w-4 h-auto my-auto fill-white" />
+    <div className="w-fit h-fit grid grid-cols-[auto auto] gap-x-2 max-sm:flex max-sm:flex-col max-sm:text-center">
+      <MapPinIcon className="w-4 h-auto my-auto fill-white max-sm:hidden" />
 
       <div className="align-baseline">{locationName}</div>
 
