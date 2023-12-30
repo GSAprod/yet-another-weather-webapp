@@ -21,14 +21,17 @@ function App() {
 
   return (
     <div
-      className="webapp-container p-6 border-box h-full flex flex-col justify-between bg-cover"
+      className="webapp-container p-6 border-box min-h-full flex flex-col 
+      justify-between bg-cover bg-center"
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
       <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
         <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
           <Location locationName={location} />
         </div>
-        
-        <div className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 max-md:col-span-2">
+
+        <div
+          className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 
+        max-md:col-span-2">
           <CurrentWeatherArea />
         </div>
 
@@ -36,7 +39,9 @@ function App() {
           <TemperatureArea maxTemp="20º C" minTemp="5º C" />
         </div>
 
-        <div className="max-md:order-2 max-md:col-span-2 max-md:flex max-md:justify-center">
+        <div
+          className="max-md:order-2 max-md:col-span-2 max-md:flex 
+        max-md:justify-center max-md:mb-10">
           <WeatherDetailsArea />
         </div>
 
