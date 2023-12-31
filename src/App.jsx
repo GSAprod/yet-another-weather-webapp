@@ -52,8 +52,8 @@ function App() {
 
       <div className="grid grid-cols-5">
         <div className="flex flex-col justify-end gap-1 max-sm:invisible">
-          <ApiCredits />
-          <UnsplashCredits />
+          <ApiCredits name="Example.com" href="#" />
+          <UnsplashCredits meta={{imageUrl: "#", authorName: "Author", authorUrl: "#" }} />
         </div>
 
         <ForecastArea />
