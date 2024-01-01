@@ -1,0 +1,46 @@
+{
+    "location": "Lisbon, Portugal",
+    "current": {
+        "epoch_sec": 1704150025,
+        "temp": 18,
+        "condition": "foggy"
+    },
+    "details": {
+        "humidity": 87,
+        "wind_speed": 20,
+        "wind_direction": "NW",
+        "chance_of_rain": 8,
+        "uv_index": 3,
+        "temp_max": 20,
+        "temp_min": 6
+    },
+    "alerts": [
+        {
+            "name": "Intense Fog",
+            "description": "Occurrence of intense fog that will last for the next 36 hours",
+            "severity": "medium"
+        }
+    ],
+    "forecast": [
+        {
+            "weekday": "tuesday",
+            "condition": "foggy",
+            "temp_max": 19,
+            "temp_min": 7
+        },
+        {
+            "weekday": "wednesday",
+            "condition": "cloudy",
+            "temp_max": 17,
+            "temp_min": 8
+        },
+        {
+            "weekday": "thursday",
+            "condition": "sunny",
+            "temp_max": 18,
+            "temp_min": 5
+        }
+    ],
+    "api_name": "ExampleAPI.com",
+    "api_url": "https://example.com"
+}
