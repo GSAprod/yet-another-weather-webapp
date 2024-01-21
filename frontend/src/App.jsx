@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import imgMetadata from "./imgMetadata.json";
+import axios from "axios";
 
 import Location from "./components/Location";
 import WeatherDetailsArea from "./components/WeatherDetailsArea";
@@ -14,6 +15,19 @@ import SettingsButton from "./components/SettingsButton";
 
 function App() {
   const [location, setLocation] = useState("Lisbon, Portugal");
+  const client = axios.create({
+    baseURL: "http://localhost:3000"
+  })
+
+  useEffect(() => {
+    async function fetchWeatherData() {
+      await client.get('/get_weather').then((response) => {
+        console.log(response.data);
+      });
+    }
+    fetchWeatherData();
+  }, []);
+  
 
   function getBackgroundImage() {
     return imgMetadata.foggy.day[0].path;
