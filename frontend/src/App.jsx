@@ -80,7 +80,7 @@ function App() {
           />
         </div>
 
-        <ForecastArea />
+        <ForecastArea forecastData={weatherData && weatherData.forecast} />
 
         <div className="self-end justify-self-end">
           <SettingsButton />

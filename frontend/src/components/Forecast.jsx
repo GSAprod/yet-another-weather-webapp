@@ -1,7 +1,20 @@
+import PropTypes from "prop-types";
 import CloudFogIcon from "../assets/icons/weather/cloud-fog.svg?react";
 import WeatherIcon from "./WeatherIcon";
 
-export default function Forecast() {
+export default function Forecast({ data }) {
+
+  // TODO Test
+  function epochToWeekDay() {
+    const date = new Date(data.epoch_sec * 1000);
+    const options = {
+      weekday: "short"
+    }
+
+    return date.toLocaleDateString(undefined, options);
+  }
+
+  // TODO Make this part configurable using props
   return (
     <div className="flex flex-col items-center max-sm:flex-row max-sm:justify-around">
       <div>Sat</div>
@@ -16,4 +29,13 @@ export default function Forecast() {
       </div>
     </div>
   );
+}
+
+Forecast.propTypes = {
+  data: PropTypes.exact({
+      epoch_sec: PropTypes.number,
+      condition: PropTypes.string,
+      temp_max: PropTypes.number,
+      temp_min: PropTypes.number
+  })
 }
