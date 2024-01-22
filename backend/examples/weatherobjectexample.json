@@ -18,7 +18,7 @@
         {
             "name": "Intense Fog",
             "description": "Occurrence of intense fog that will last for the next 36 hours",
-            "severity": "medium"
+            "severity": "moderate"
         }
     ],
     "forecast": [

@@ -15,7 +15,6 @@ import SettingsButton from "./components/SettingsButton";
 
 function App() {
   const [weatherData, setWeatherData] = useState();
-  const [location, setLocation] = useState("Lisbon, Portugal");
   const client = axios.create({
     baseURL: "http://localhost:3000",
   });
@@ -51,7 +50,7 @@ function App() {
           className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 
         max-md:col-span-2">
           <CurrentWeatherArea
-            currentWeatherData={weatherData && weatherData.current}
+            currentWeather={weatherData && weatherData.current}
           />
         </div>
 
@@ -65,11 +64,11 @@ function App() {
         <div
           className="max-md:order-2 max-md:col-span-2 max-md:flex 
         max-md:justify-center max-md:mb-10">
-          <WeatherDetailsArea />
+          <WeatherDetailsArea weatherDetails={weatherData && weatherData.details} />
         </div>
 
         <div className="max-md:order-1 max-sm:hidden">
-          <AlertsArea />
+          <AlertsArea alerts={weatherData && weatherData.alerts} />
         </div>
       </div>
 
