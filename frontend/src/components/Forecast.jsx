@@ -1,4 +1,5 @@
 import CloudFogIcon from "../assets/icons/weather/cloud-fog.svg?react";
+import WeatherIcon from "./WeatherIcon";
 
 export default function Forecast() {
   return (
@@ -6,7 +7,7 @@ export default function Forecast() {
       <div>Sat</div>
 
       <div className="flex flex-col items-center max-sm:flex-row max-sm:w-2/5 max-sm:justify-between">
-        <CloudFogIcon className="w-9 h-auto my-3 fill-white max-sm:my-1" />
+        <WeatherIcon icon={CloudFogIcon} size="small" />
 
         <div className="flex flex-col items-center max-sm:items-end">
           <div className="font-bold text-lg mb-1 max-sm:-mb-1">21º C</div>

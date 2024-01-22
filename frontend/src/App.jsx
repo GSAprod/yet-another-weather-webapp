@@ -14,15 +14,15 @@ import ApiCredits from "./components/ApiCredits";
 import SettingsButton from "./components/SettingsButton";
 
 function App() {
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState();
   const [location, setLocation] = useState("Lisbon, Portugal");
   const client = axios.create({
-    baseURL: "http://localhost:3000"
-  })
+    baseURL: "http://localhost:3000",
+  });
 
   useEffect(() => {
     async function fetchWeatherData() {
-      await client.get('/get_weather').then((response) => {
+      await client.get("/get_weather").then((response) => {
         if (response.status === 200) {
           setWeatherData(response.data);
         } else {
@@ -32,7 +32,6 @@ function App() {
     }
     fetchWeatherData();
   }, []);
-  
 
   function getBackgroundImage() {
     return imgMetadata.foggy.day[0].path;
@@ -45,17 +44,22 @@ function App() {
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
       <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
         <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
-          <Location locationName={weatherData.location} />
+          <Location locationName={weatherData && weatherData.location} />
         </div>
 
         <div
           className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 
         max-md:col-span-2">
-          <CurrentWeatherArea currentWeatherData={weatherData.current} />
+          <CurrentWeatherArea
+            currentWeatherData={weatherData && weatherData.current}
+          />
         </div>
 
         <div className="max-md:order-2 max-md:col-span-2">
-          <TemperatureArea maxTemp="20º C" minTemp="5º C" />
+          <TemperatureArea
+            maxTemp={weatherData && weatherData.details.temp_max}
+            minTemp={weatherData && weatherData.details.temp_min}
+          />
         </div>
 
         <div

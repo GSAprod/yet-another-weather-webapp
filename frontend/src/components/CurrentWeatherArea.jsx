@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import CloudSunIcon from "../assets/icons/weather/cloud-sun.svg?react";
+import WeatherIcon from "./WeatherIcon";
 
 export default function CurrentWeatherArea({ currentWeatherData }) {
   const [weatherDateFormat, setWeatherDateFormat] = useState("");
@@ -10,11 +11,15 @@ export default function CurrentWeatherArea({ currentWeatherData }) {
     const format = {
       weekday: "long",
       day: "numeric",
-      month: "long",
-      year: "numeric",
+      month: "long"
     };
 
     setWeatherDateFormat(date.toLocaleDateString(undefined, format));
+  }
+
+  // TODO Rewrite this function to update the icon according to currentWeatherData.condition
+  function updateWeatherIcon() {
+    return CloudSunIcon;
   }
 
   useEffect(() => {
@@ -32,7 +37,7 @@ export default function CurrentWeatherArea({ currentWeatherData }) {
       </div>
 
       <div className="flex items-center gap-2">
-        <CloudSunIcon className="h-16 w-auto fill-white" />
+        <WeatherIcon icon={updateWeatherIcon()} size="large" />
 
         <div className="text-5xl capitalize">
           {currentWeatherData && currentWeatherData.condition}
@@ -46,6 +51,6 @@ CurrentWeatherArea.propTypes = {
   currentWeatherData: PropTypes.exact({
     epoch_sec: PropTypes.number,
     temp: PropTypes.number,
-    condition: PropTypes.string
-  })
-}
+    condition: PropTypes.string,
+  }),
+};
