@@ -64,7 +64,9 @@ function App() {
         <div
           className="max-md:order-2 max-md:col-span-2 max-md:flex 
         max-md:justify-center max-md:mb-10">
-          <WeatherDetailsArea weatherDetails={weatherData && weatherData.details} />
+          <WeatherDetailsArea
+            weatherDetails={weatherData && weatherData.details}
+          />
         </div>
 
         <div className="max-md:order-1 max-sm:hidden">
@@ -74,7 +76,10 @@ function App() {
 
       <div className="grid grid-cols-5">
         <div className="flex flex-col justify-end gap-1 max-sm:invisible">
-          <ApiCredits name="Example.com" href="#" />
+          <ApiCredits
+            name={weatherData && weatherData.api_name}
+            href={weatherData && weatherData.api_url}
+          />
           <UnsplashCredits
             meta={{ imageUrl: "#", authorName: "Author", authorUrl: "#" }}
           />

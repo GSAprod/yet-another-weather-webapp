@@ -11,21 +11,14 @@ export default function CurrentWeatherArea({ currentWeather }) {
     const format = {
       weekday: "long",
       day: "numeric",
-      month: "long"
+      month: "long",
     };
 
     setWeatherDateFormat(date.toLocaleDateString(undefined, format));
   }
 
-  // TODO Rewrite this function to update the icon according to currentWeatherData.condition
-  function updateWeatherIcon() {
-    return CloudSunIcon;
-  }
-
   useEffect(() => {
-    return (
-      currentWeather && epochToDateFormat(currentWeather.epoch_sec)
-    );
+    return currentWeather && epochToDateFormat(currentWeather.epoch_sec);
   }, [currentWeather]);
 
   return (
@@ -37,7 +30,10 @@ export default function CurrentWeatherArea({ currentWeather }) {
       </div>
 
       <div className="flex items-center gap-2">
-        <WeatherIcon icon={updateWeatherIcon()} size="large" />
+        <WeatherIcon
+          condition={currentWeather && currentWeather.condition}
+          size="large"
+        />
 
         <div className="text-5xl capitalize">
           {currentWeather && currentWeather.condition}
