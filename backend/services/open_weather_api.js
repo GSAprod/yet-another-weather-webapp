@@ -1,7 +1,7 @@
-import OpenWeatherTest from "../examples/open_weather_api.json" assert { type: "json" };
+import OpenWeatherTest from "../examples/open_meteo_api.json" assert { type: "json" };
 import axios from "axios";
 
-export default class OpenWeatherAPI {
+export default class OpenMeteoAPI {
     constructor() {
         this.endpoint = axios.create({
             baseURL: "https://api.open-meteo.com/v1"
@@ -9,12 +9,99 @@ export default class OpenWeatherAPI {
     }
 
     async format_response(data, location) {
+        function translateWeatherCondition(code) {
+            const weatherCodes = {
+                0: "sunny",
+                1: "partly-cloudy",
+                2: "partly-cloudy",
+                3: "cloudy",
+                45: "foggy",
+                48: "foggy",
+                51: "drizzle",
+                53: "drizzle",
+                55: "drizzle",
+                61: "rain",
+                63: "rain",
+                65: "rain",
+                66: "rain",
+                67: "rain",
+                71: "snow",
+                73: "snow",
+                75: "snow",
+                77: "snow",
+                80: "showers",
+                81: "showers",
+                82: "showers",
+                85: "showers",
+                86: "showers",
+                95: "thunderstorm",
+                96: "thunderstorm",
+                99: "thunderstorm"
+            }
+
+            return weatherCodes[code];
+        }
+
+        function translateWindDirection(degrees) {
+            const direction = Math.round(degrees / 45);
+            const compassDirections = {
+                0: "N",
+                1: "NE",
+                2: "E",
+                3: "SE",
+                4: "S",
+                5: "SW",
+                6: "W",
+                7: "NW",
+                8: "N"
+            }
+            return compassDirections[direction];
+        }
+
+        const weatherCondition = translateWeatherCondition(data.current.weather_code);
+        if (weatherCondition === undefined) {
+            console.log("Warning: Weather condition with code " + data.current.weather_code + "is not defined.");
+            return null;
+        }
+
+        const weatherForecast = [];
+        for (let i = 1; i < data.daily.time.length; i++) {
+            weatherForecast.push({
+                epoch_sec: data.daily.time[i],
+                condition: translateWeatherCondition(data.daily.weather_code[i]),
+                temp_max: data.daily.temperature_2m_max[i],
+                temp_min: data.daily.temperature_2m_min[i]
+            })
+        }
         
+        const formattedOutput = {
+            location: location,
+            current: {
+                epoch_sec: data.current.time,
+                temp: data.current.temperature_2m,
+                condition: weatherCondition
+            },
+            details: {
+                humidity: data.current.relative_humidity_2m,
+                wind_speed: data.current.wind_speed_10m,
+                wind_direction: translateWindDirection(data.current.wind_direction_10m),
+                chance_of_rain: data.daily.precipitation_probability_max[0],
+                uv_index: data.daily.uv_index_max[0],
+                temp_max: data.daily.temperature_2m_max[0],
+                temp_min: data.daily.temperature_2m_min[0]
+            },
+            alerts: [],
+            forecast: weatherForecast,
+            api_name: "Open-Meteo API",
+            api_url: "https://open-meteo.com/"
+        }
+        console.log(formattedOutput);
+        return JSON.stringify(formattedOutput);
     }
 
     async get_weather() {
         // TODO Remove this line when testing
-        return [200, OpenWeatherTest];
+        return [200, await this.format_response(OpenWeatherTest, "Lisbon, Portugal")];
 
         try {
             const response = await this.endpoint.get("/forecast", {
@@ -28,8 +115,8 @@ export default class OpenWeatherAPI {
                     forecast_days: 7
                 }
             });
-            console.log(response.prototype.can);
-            return [response.status, response.data];
+            
+            return [response.status, await this.format_response(response.data, "Lisbon, Portugal")];
         } catch(error) {
             if (error.response) {
                 console.log(error.response.data);

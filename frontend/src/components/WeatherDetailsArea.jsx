@@ -31,7 +31,7 @@ export default function WeatherDetailsArea({ weatherDetails }) {
         />
       )}
 
-      {weatherDetails && weatherDetails.chance_of_rain && (
+      {weatherDetails && weatherDetails.chance_of_rain != undefined && (
         <WeatherDetail
           icon={UmbrellaIcon}
           name="Chance of rain"
