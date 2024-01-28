@@ -17,7 +17,9 @@ export default function Forecast({ data }) {
       <div>{epochToWeekDay()}</div>
 
       <div className="flex flex-col items-center max-sm:flex-row max-sm:w-2/5 max-sm:justify-between">
-        <WeatherIcon condition={data.condition} size="small" />
+        <div title={data.condition}>
+          <WeatherIcon condition={data.condition} size="small" />
+        </div>
 
         <div className="flex flex-col items-center max-sm:items-end">
           <div className="font-bold text-lg mb-1 max-sm:-mb-1">

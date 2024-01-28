@@ -4,7 +4,7 @@ export default function ApiCredits({ name, href }) {
   return (
     <div className="text-sm">
       Weather by{" "}
-      <a href={href} className="hover:underline">
+      <a href={href} className="hover:underline" target="_blank" rel="noreferrer">
         {name}
       </a>
     </div>
