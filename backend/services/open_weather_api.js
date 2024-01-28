@@ -69,8 +69,8 @@ export default class OpenMeteoAPI {
             weatherForecast.push({
                 epoch_sec: data.daily.time[i],
                 condition: translateWeatherCondition(data.daily.weather_code[i]),
-                temp_max: data.daily.temperature_2m_max[i],
-                temp_min: data.daily.temperature_2m_min[i]
+                temp_max: Math.round(data.daily.temperature_2m_max[i]),
+                temp_min: Math.round(data.daily.temperature_2m_min[i])
             })
         }
         
@@ -78,24 +78,23 @@ export default class OpenMeteoAPI {
             location: location,
             current: {
                 epoch_sec: data.current.time,
-                temp: data.current.temperature_2m,
+                temp: Math.round(data.current.temperature_2m),
                 condition: weatherCondition
             },
             details: {
                 humidity: data.current.relative_humidity_2m,
-                wind_speed: data.current.wind_speed_10m,
+                wind_speed: Math.round(data.current.wind_speed_10m),
                 wind_direction: translateWindDirection(data.current.wind_direction_10m),
                 chance_of_rain: data.daily.precipitation_probability_max[0],
-                uv_index: data.daily.uv_index_max[0],
-                temp_max: data.daily.temperature_2m_max[0],
-                temp_min: data.daily.temperature_2m_min[0]
+                uv_index: Math.round(data.daily.uv_index_max[0]),
+                temp_max: Math.round(data.daily.temperature_2m_max[0]),
+                temp_min: Math.round(data.daily.temperature_2m_min[0])
             },
             alerts: [],
             forecast: weatherForecast,
             api_name: "Open-Meteo API",
             api_url: "https://open-meteo.com/"
         }
-        console.log(formattedOutput);
         return JSON.stringify(formattedOutput);
     }
 
