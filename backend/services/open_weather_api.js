@@ -79,7 +79,8 @@ export default class OpenMeteoAPI {
             current: {
                 epoch_sec: data.current.time,
                 temp: Math.round(data.current.temperature_2m),
-                condition: weatherCondition
+                condition: weatherCondition,
+                is_day: data.current.is_day == 1 ? true : false
             },
             details: {
                 humidity: data.current.relative_humidity_2m,

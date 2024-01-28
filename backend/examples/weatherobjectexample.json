@@ -3,7 +3,8 @@
     "current": {
         "epoch_sec": 1704150025,
         "temp": 18,
-        "condition": "foggy"
+        "condition": "foggy",
+        "is_day": true
     },
     "details": {
         "humidity": 87,
