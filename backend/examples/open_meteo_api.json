@@ -11,7 +11,7 @@
         "interval": "seconds",
         "temperature_2m": "°C",
         "relative_humidity_2m": "%",
-        "is_day": "",
+        "is_day": true,
         "weather_code": "wmo code",
         "wind_speed_10m": "km/h",
         "wind_direction_10m": "°"

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import "./App.css";
 import imgMetadata from "./imgMetadata.json";
-import axios from "axios";
+import ErrorIcon from "./assets/icons/cloud-slash.svg?react";
 
 import Location from "./components/Location";
 import WeatherDetailsArea from "./components/WeatherDetailsArea";
@@ -41,8 +42,10 @@ function App() {
 
   return (
     <div
-      className="webapp-container p-6 border-box min-h-full flex flex-col 
-      justify-between bg-cover bg-center"
+      className={`webapp-container p-6 border-box min-h-full flex flex-col 
+      bg-cover bg-center ${
+        weatherData != undefined ? "justify-between" : "justify-center"
+      }`}
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
       {weatherData != undefined ? (
         <>
@@ -98,7 +101,19 @@ function App() {
           </div>
         </>
       ) : (
-        <>TODO</>
+        <div className="max-w-screen-md bg-black/20 backdrop-blur-md p-8 rounded-3xl 
+        drop-shadow-lg self-center gap-5 flex flex-col text-center items-center">
+          <ErrorIcon className="w-12 h-auto fill-white" />
+          <p className="font-bold">An error has occurred</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil et
+            minima, sequi harum deserunt ipsa laboriosam error quam cupiditate
+            ea temporibus, dolorum omnis atque nesciunt in illo alias tempore
+            iure.
+          </p>
+
+          <div className="px-3 py-1 border rounded">Refresh</div>
+        </div>
       )}
     </div>
   );
