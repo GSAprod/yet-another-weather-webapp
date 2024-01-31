@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import CloudSunIcon from "../assets/icons/weather/cloud-sun.svg?react";
 import WeatherIcon from "./WeatherIcon";
 
 export default function CurrentWeatherArea({ currentWeather }) {
@@ -48,5 +47,6 @@ CurrentWeatherArea.propTypes = {
     epoch_sec: PropTypes.number,
     temp: PropTypes.number,
     condition: PropTypes.string,
+    is_day: PropTypes.bool
   }),
 };

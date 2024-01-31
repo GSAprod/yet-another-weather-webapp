@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import imgMetadata from "./imgMetadata.json";
-import ErrorIcon from "./assets/icons/cloud-slash.svg?react";
 
 import Location from "./components/Location";
 import WeatherDetailsArea from "./components/WeatherDetailsArea";
@@ -13,8 +12,10 @@ import ForecastArea from "./components/ForecastArea";
 import UnsplashCredits from "./components/UnsplashCredits";
 import ApiCredits from "./components/ApiCredits";
 import SettingsButton from "./components/SettingsButton";
+import ErrorPopup from "./components/ErrorPopup";
 
 function App() {
+  const [errorData, setErrorData] = useState(undefined);
   const [weatherData, setWeatherData] = useState();
   const client = axios.create({
     baseURL: "http://localhost:3000",
@@ -27,7 +28,10 @@ function App() {
 
         setWeatherData(response.data);
       } catch (error) {
-        console.log("Error: ", <error className="response status"></error>);
+        console.log(error);
+
+        if (error)
+        console.log("Error: ", error.response.status);
         console.log(error.response.headers);
         console.log(error.response.data);
         setWeatherData(undefined);
@@ -101,19 +105,7 @@ function App() {
           </div>
         </>
       ) : (
-        <div className="max-w-screen-md bg-black/20 backdrop-blur-md p-8 rounded-3xl 
-        drop-shadow-lg self-center gap-5 flex flex-col text-center items-center">
-          <ErrorIcon className="w-12 h-auto fill-white" />
-          <p className="font-bold">An error has occurred</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil et
-            minima, sequi harum deserunt ipsa laboriosam error quam cupiditate
-            ea temporibus, dolorum omnis atque nesciunt in illo alias tempore
-            iure.
-          </p>
-
-          <div className="px-3 py-1 border rounded">Refresh</div>
-        </div>
+        <ErrorPopup />
       )}
     </div>
   );
