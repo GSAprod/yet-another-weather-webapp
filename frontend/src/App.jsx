@@ -19,6 +19,7 @@ function App() {
   const [weatherData, setWeatherData] = useState();
   const client = axios.create({
     baseURL: "http://localhost:3000",
+    timeout: 10000
   });
 
   useEffect(() => {
@@ -27,14 +28,26 @@ function App() {
         const response = await client.get("/get_weather");
 
         setWeatherData(response.data);
+        setErrorData(undefined);
       } catch (error) {
-        console.log(error);
-
-        if (error)
-        console.log("Error: ", error.response.status);
-        console.log(error.response.headers);
-        console.log(error.response.data);
-        setWeatherData(undefined);
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the 200 range
+          console.log("Error: ", error.response.status);
+          console.log(error.response.headers);
+          console.log(error.response.data);
+          setWeatherData(undefined);
+          setErrorData(error.response.data);
+        } else if (error.request) {
+          // The request was sent but no response was received
+          console.log(error.request);
+          setWeatherData(undefined);
+          setErrorData({
+            error: true,
+            type: "internal",
+            reason: "Internal Server Error. Please try again later."
+          })
+        }
       }
     }
     fetchWeatherData();
@@ -51,7 +64,7 @@ function App() {
         weatherData != undefined ? "justify-between" : "justify-center"
       }`}
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
-      {weatherData != undefined ? (
+      {weatherData !== undefined && weatherData.error === undefined ? (
         <>
           <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
             <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
@@ -105,7 +118,7 @@ function App() {
           </div>
         </>
       ) : (
-        <ErrorPopup />
+        errorData && <ErrorPopup errorData={errorData} />
       )}
     </div>
   );

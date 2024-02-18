@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes, { bool, number, string } from "prop-types";
 import ErrorIcon from "../assets/icons/cloud-slash.svg?react";
 
 export default function ErrorPopup({ errorData }) {
@@ -8,13 +8,10 @@ export default function ErrorPopup({ errorData }) {
         drop-shadow-lg self-center gap-5 flex flex-col text-center items-center">
       <ErrorIcon className="w-12 h-auto fill-white" />
       <p className="font-bold">An error has occurred</p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil et
-        minima, sequi harum deserunt ipsa laboriosam error quam cupiditate ea
-        temporibus, dolorum omnis atque nesciunt in illo alias tempore iure.
-      </p>
+      <p>{errorData.reason}</p>
 
-      <div className="px-3 py-1 border rounded select-none hover:bg-white/10 
+      <div
+        className="px-3 py-1 border rounded select-none hover:bg-white/10 
       cursor-pointer active:bg-transparent">
         Refresh
       </div>
@@ -23,7 +20,10 @@ export default function ErrorPopup({ errorData }) {
 }
 
 ErrorPopup.propTypes = {
-    errorData: PropTypes.exact(
-        // TODO Select type
-    )
-}
+  errorData: PropTypes.exact({
+    error: bool,
+    type: string,
+    status: number,
+    reason: string,
+  }),
+};

@@ -4,7 +4,8 @@ import axios from "axios";
 export default class OpenMeteoAPI {
     constructor() {
         this.endpoint = axios.create({
-            baseURL: "https://api.open-meteo.com/v1"
+            baseURL: "https://api.open-meteo.com/v1",
+            timeout: 10000
         })
     }
 
@@ -46,13 +47,13 @@ export default class OpenMeteoAPI {
             const direction = Math.round(degrees / 45);
             const compassDirections = {
                 0: "N",
-                1: "NE",
-                2: "E",
-                3: "SE",
+                1: "NW",
+                2: "W",
+                3: "SW",
                 4: "S",
-                5: "SW",
-                6: "W",
-                7: "NW",
+                5: "SE",
+                6: "E",
+                7: "NE",
                 8: "N"
             }
             return compassDirections[direction];
@@ -101,7 +102,7 @@ export default class OpenMeteoAPI {
 
     async get_weather() {
         // TODO Remove this line when testing
-        return [200, await this.format_response(OpenWeatherTest, "Lisbon, Portugal")];
+        // return [200, await this.format_response(OpenWeatherTest, "Lisbon, Portugal")];
 
         try {
             const response = await this.endpoint.get("/forecast", {
@@ -118,14 +119,25 @@ export default class OpenMeteoAPI {
             
             return [response.status, await this.format_response(response.data, "Lisbon, Portugal")];
         } catch(error) {
-            if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-                return [error.status, error.data];
-            } else {
-                return [500, error.message];
+            let errorData = {
+                error: true
             }
+
+            if (error.response) {
+                errorData = {
+                    ...errorData,
+                    type: error.response.status < 500 ? "internal" : "api",
+                    status: error.response.status,
+                    reason: `OpenMeteo API - ${error.response.data.reason} (${error.response.status})`
+                }
+            } else {
+                errorData = {
+                    ...errorData,
+                    type: "axios",
+                    reason: `Axios - ${error.message}`
+                }
+            }
+            return [500, JSON.stringify(errorData)];
         }
     }
 }
