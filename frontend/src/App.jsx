@@ -21,7 +21,6 @@ function App() {
 
   const client = axios.create({
     baseURL: "http://localhost:3000",
-    timeout: 10000
   });
 
   useEffect(() => {
@@ -32,12 +31,13 @@ function App() {
     return imgMetadata.foggy.day[0].path;
   }
 
-  async function fetchWeatherData(attempt = 0) {
+  async function fetchWeatherData(attempt = 1) {
     try {
-      const response = await client.get("/get_weather");
+      const response = await client.get("/get_weather", {
+        timeout: 5000*(attempt * .75),
+      });
       setWeatherData(response.data);
       setErrorData(undefined);
-      setLoadingMessage(null);
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -49,9 +49,12 @@ function App() {
         setErrorData(error.response.data);
       } else if (error.request) {
         // The request was sent but no response was received
-        console.log(error.request);
+        if (attempt < 3) {
+          // Request timed out. Retry with a longer timeout
+          fetchWeatherData(attempt + 1);
+          return;
+        }
         setWeatherData(undefined);
-        setLoadingMessage(null);
         setErrorData({
           error: true,
           type: "internal",
