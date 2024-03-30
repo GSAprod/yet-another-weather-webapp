@@ -13,10 +13,12 @@ import UnsplashCredits from "./components/UnsplashCredits";
 import ApiCredits from "./components/ApiCredits";
 import SettingsButton from "./components/SettingsButton";
 import ErrorPopup from "./components/ErrorPopup";
+import LoadingPopup from "./components/LoadingPopup";
 
 function App() {
   const [errorData, setErrorData] = useState(undefined);
   const [weatherData, setWeatherData] = useState();
+
   const client = axios.create({
     baseURL: "http://localhost:3000",
     timeout: 10000
@@ -26,7 +28,6 @@ function App() {
     async function fetchWeatherData() {
       try {
         const response = await client.get("/get_weather");
-
         setWeatherData(response.data);
         setErrorData(undefined);
       } catch (error) {
@@ -45,8 +46,8 @@ function App() {
           setErrorData({
             error: true,
             type: "internal",
-            reason: "Internal Server Error. Please try again later."
-          })
+            reason: "Request timed out. Please try again later."
+          });
         }
       }
     }
@@ -61,28 +62,28 @@ function App() {
     <div
       className={`webapp-container p-6 border-box min-h-full flex flex-col 
       bg-cover bg-center ${
-        weatherData != undefined ? "justify-between" : "justify-center"
+        weatherData ? "justify-between" : "justify-center"
       }`}
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
-      {weatherData !== undefined && weatherData.error === undefined ? (
+      {weatherData && !weatherData.error ? (
         <>
           <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
             <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
-              <Location locationName={weatherData && weatherData.location} />
+              <Location locationName={weatherData.location} />
             </div>
 
             <div
               className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 
         max-md:col-span-2">
               <CurrentWeatherArea
-                currentWeather={weatherData && weatherData.current}
+                currentWeather={weatherData.current}
               />
             </div>
 
             <div className="max-md:order-2 max-md:col-span-2">
               <TemperatureArea
-                maxTemp={weatherData && weatherData.details.temp_max}
-                minTemp={weatherData && weatherData.details.temp_min}
+                maxTemp={weatherData.details.temp_max}
+                minTemp={weatherData.details.temp_min}
               />
             </div>
 
@@ -90,35 +91,37 @@ function App() {
               className="max-md:order-2 max-md:col-span-2 max-md:flex 
         max-md:justify-center max-md:mb-10">
               <WeatherDetailsArea
-                weatherDetails={weatherData && weatherData.details}
+                weatherDetails={weatherData.details}
               />
             </div>
 
             <div className="max-md:order-1 max-sm:hidden">
-              <AlertsArea alerts={weatherData && weatherData.alerts} />
+              <AlertsArea alerts={weatherData.alerts} />
             </div>
           </div>
 
           <div className="grid grid-cols-5">
             <div className="flex flex-col justify-end gap-1 max-sm:invisible">
               <ApiCredits
-                name={weatherData && weatherData.api_name}
-                href={weatherData && weatherData.api_url}
+                name={weatherData.api_name}
+                href={weatherData.api_url}
               />
               <UnsplashCredits
                 meta={{ imageUrl: "#", authorName: "Author", authorUrl: "#" }}
               />
             </div>
 
-            <ForecastArea forecastData={weatherData && weatherData.forecast} />
+            <ForecastArea forecastData={weatherData.forecast} />
 
             <div className="self-end justify-self-end">
               <SettingsButton />
             </div>
           </div>
         </>
+      ) : errorData ? (
+        <ErrorPopup errorData={errorData} />
       ) : (
-        errorData && <ErrorPopup errorData={errorData} />
+        <LoadingPopup />
       )}
     </div>
   );
