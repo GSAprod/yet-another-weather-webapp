@@ -25,37 +25,46 @@ function App() {
   });
 
   useEffect(() => {
-    async function fetchWeatherData() {
-      try {
-        const response = await client.get("/get_weather");
-        setWeatherData(response.data);
-        setErrorData(undefined);
-      } catch (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the 200 range
-          console.log("Error: ", error.response.status);
-          console.log(error.response.headers);
-          console.log(error.response.data);
-          setWeatherData(undefined);
-          setErrorData(error.response.data);
-        } else if (error.request) {
-          // The request was sent but no response was received
-          console.log(error.request);
-          setWeatherData(undefined);
-          setErrorData({
-            error: true,
-            type: "internal",
-            reason: "Request timed out. Please try again later."
-          });
-        }
-      }
-    }
     fetchWeatherData();
   }, []);
 
   function getBackgroundImage() {
     return imgMetadata.foggy.day[0].path;
+  }
+
+  async function fetchWeatherData(attempt = 0) {
+    try {
+      const response = await client.get("/get_weather");
+      setWeatherData(response.data);
+      setErrorData(undefined);
+      setLoadingMessage(null);
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the 200 range
+        console.log("Error: ", error.response.status);
+        console.log(error.response.headers);
+        console.log(error.response.data);
+        setWeatherData(undefined);
+        setErrorData(error.response.data);
+      } else if (error.request) {
+        // The request was sent but no response was received
+        console.log(error.request);
+        setWeatherData(undefined);
+        setLoadingMessage(null);
+        setErrorData({
+          error: true,
+          type: "internal",
+          reason: "Request timed out. Please try again later."
+        });
+      }
+    }
+  }
+
+  function refreshWeatherData() {
+    setWeatherData(undefined);
+    setErrorData(undefined);
+    fetchWeatherData();
   }
 
   return (
@@ -119,7 +128,7 @@ function App() {
           </div>
         </>
       ) : errorData ? (
-        <ErrorPopup errorData={errorData} />
+        <ErrorPopup errorData={errorData} refreshFunction={refreshWeatherData} />
       ) : (
         <LoadingPopup />
       )}

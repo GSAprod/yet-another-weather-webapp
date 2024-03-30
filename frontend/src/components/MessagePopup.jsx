@@ -1,4 +1,4 @@
-import { bool, elementType, string } from "prop-types";
+import { bool, elementType, func, string } from "prop-types";
 
 export default function MessagePopup(props) {
   return (
@@ -17,7 +17,8 @@ export default function MessagePopup(props) {
       {props.refreshButton && (
         <div
           className="px-3 py-1 border rounded select-none hover:bg-white/10 
-      cursor-pointer active:bg-transparent">
+      cursor-pointer active:bg-transparent"
+          onClick={props.refreshFunction}>
           Refresh
         </div>
       )}
@@ -31,4 +32,5 @@ MessagePopup.propTypes = {
   icon: elementType.isRequired,
   iconSpin: bool,
   refreshButton: bool.isRequired,
+  refreshFunction: func,
 };
