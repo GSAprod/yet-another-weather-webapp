@@ -1,11 +1,13 @@
 import MapPinIcon from "../assets/icons/map-pin-fill.svg?react";
-import { string } from "prop-types";
+import { func, string } from "prop-types";
 
-export default function Location({ locationName }) {
+export default function Location({ locationName, openPickerFunction }) {
   return (
     <div
       className="group w-fit h-fit grid grid-cols-[auto auto] gap-x-2 
-    max-sm:flex max-sm:flex-col max-sm:text-center cursor-pointer">
+    max-sm:flex max-sm:flex-col max-sm:text-center cursor-pointer"
+      onClick={openPickerFunction}
+    >
       <MapPinIcon className="w-4 h-auto my-auto fill-white max-sm:hidden" />
 
       <div className="align-baseline">{locationName}</div>
@@ -21,4 +23,5 @@ export default function Location({ locationName }) {
 
 Location.propTypes = {
   locationName: string,
+  openPickerFunction: func.isRequired,
 };

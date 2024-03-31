@@ -14,10 +14,13 @@ import ApiCredits from "./components/ApiCredits";
 import SettingsButton from "./components/SettingsButton";
 import ErrorPopup from "./components/ErrorPopup";
 import LoadingPopup from "./components/LoadingPopup";
+import LocationPicker from "./components/locationPicker/LocationPicker";
 
 function App() {
   const [errorData, setErrorData] = useState(undefined);
   const [weatherData, setWeatherData] = useState();
+
+  const [isLocationPickerOpen, setIsLocationPickerOpen] = useState(false);
 
   const client = axios.create({
     baseURL: "http://localhost:3000",
@@ -81,7 +84,7 @@ function App() {
         <>
           <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
             <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
-              <Location locationName={weatherData.location} />
+              <Location locationName={weatherData.location} openPickerFunction={() => setIsLocationPickerOpen(true)} />
             </div>
 
             <div
@@ -129,6 +132,7 @@ function App() {
               <SettingsButton />
             </div>
           </div>
+          { isLocationPickerOpen && <LocationPicker closeFunction={() => setIsLocationPickerOpen(false)} /> }
         </>
       ) : errorData ? (
         <ErrorPopup errorData={errorData} refreshFunction={refreshWeatherData} />
