@@ -36,9 +36,9 @@ export default function FullScreenMenu({
       onClick={onBackgroundClick}>
       <div
         className={
-          "w-full max-w-screen-md rounded-2xl backdrop-brightness-75 " +
-          "shadow shadow-black/25 border border-white/20 max-sm:rounded-none " +
-          (fullHeight === true ? "h-full" : "")
+          "w-full max-w-screen-md rounded-xl backdrop-brightness-75 " +
+          "shadow shadow-black/25 sm:border border-white/20 max-sm:rounded-none overflow-hidden " +
+          (fullHeight === true ? "h-full" : "") + "max-sm:h-full"
         }>
         {children}
       </div>
