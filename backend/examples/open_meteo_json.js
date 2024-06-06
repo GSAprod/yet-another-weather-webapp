@@ -1,4 +1,4 @@
-{
+export default {
     "latitude": 38.72,
     "longitude": -9.13,
     "generationtime_ms": 2.1480321884155273,

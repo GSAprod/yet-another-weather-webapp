@@ -1,4 +1,4 @@
-import WeatherTestObject from "../examples/weatherobjectexample.json" assert { type: "json" };
+import WeatherTestObject from "../examples/weatherobjectexample_json.js";
 
 export default class ExampleAPI {
     get_weather() {

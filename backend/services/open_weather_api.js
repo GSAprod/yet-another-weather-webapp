@@ -1,4 +1,4 @@
-import OpenWeatherTest from "../examples/open_meteo_api.json" assert { type: "json" };
+import OpenWeatherTest from "../examples/open_meteo_json.js";
 import axios from "axios";
 
 export default class OpenMeteoAPI {

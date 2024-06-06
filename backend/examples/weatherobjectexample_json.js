@@ -1,4 +1,4 @@
-{
+export default {
     "location": "Lisbon, Portugal",
     "current": {
         "epoch_sec": 1704150025,
