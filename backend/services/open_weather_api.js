@@ -102,7 +102,7 @@ export default class OpenMeteoAPI {
 
     async get_weather() {
         // TODO Remove this line when testing
-        // return [200, await this.format_response(OpenWeatherTest, "Lisbon, Portugal")];
+        return [200, await this.format_response(OpenWeatherTest, "Lisbon, Portugal")];
 
         try {
             const response = await this.endpoint.get("/forecast", {
