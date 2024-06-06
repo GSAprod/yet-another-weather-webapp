@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
 import WeatherIcon from "./WeatherIcon";
 
+/***
+ * Element representing a forecast for one of the next days.
+ * Located at the bottom-center of the page.
+ */
 export default function Forecast({ data }) {
+
+  // Convert the date given into an abbreviated form of a weekday.
   function epochToWeekDay() {
     const date = new Date(data.epoch_sec * 1000);
     const options = {
@@ -11,7 +17,6 @@ export default function Forecast({ data }) {
     return date.toLocaleDateString(undefined, options);
   }
 
-  // TODO Make this part configurable using props
   return (
     <div className="flex flex-col items-center max-sm:flex-row max-sm:justify-around">
       <div>{epochToWeekDay()}</div>

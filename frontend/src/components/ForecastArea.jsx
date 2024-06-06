@@ -2,6 +2,10 @@ import PropTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import Forecast from "./Forecast";
 
+/***
+ * Element group containing <Forecast> components. Shows the forecast for the next
+ * couple of days.
+ */
 export default function ForecastArea({ forecastData }) {
   return (
     <div

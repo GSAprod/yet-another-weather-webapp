@@ -10,6 +10,9 @@ import CloudLightningIcon from "../assets/icons/weather/cloud-lightning.svg?reac
 
 import PropTypes from "prop-types";
 
+/**
+ * Weather icon selector
+ */
 export default function WeatherIcon({ condition, timeOfDay, size }) {
   const iconSizeCss =
     size === "large"

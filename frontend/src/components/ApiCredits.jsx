@@ -1,5 +1,8 @@
 import { string } from "prop-types";
 
+/***
+ * "Weather by" label on the bottom-left of the screen
+ */
 export default function ApiCredits({ name, href }) {
   return (
     <div className="text-sm">

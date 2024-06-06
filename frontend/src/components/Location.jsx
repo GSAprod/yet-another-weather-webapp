@@ -1,6 +1,10 @@
 import MapPinIcon from "../assets/icons/map-pin-fill.svg?react";
 import { func, string } from "prop-types";
 
+/***
+ * Element that shows the selected location for a forecast.
+ * When clicked, opens a <LocationPicker> modal.
+ */
 export default function Location({ locationName, openPickerFunction }) {
   return (
     <div

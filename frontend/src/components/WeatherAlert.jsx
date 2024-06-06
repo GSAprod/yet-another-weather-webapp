@@ -1,8 +1,14 @@
 import PropTypes from "prop-types";
 import WarningIcon from "../assets/icons/warning-bold.svg?react";
 
+/**
+ * Component showing a single weather alert.
+ * Displayed below the min and max temperatures, in the top-corner of the main webpage.
+ */
 export default function WeatherAlert({ alertData }) {
   function selectWarningColor() {
+    // Depending on the severity of a situation, we want to show the alert icon
+    // using a different color.
     if (alertData == undefined) return "fill-yellow-400";
 
     switch (alertData.severity) {

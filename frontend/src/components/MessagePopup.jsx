@@ -1,5 +1,10 @@
 import { bool, elementType, func, string } from "prop-types";
 
+/***
+ * Generic component that is used to decorate popups shown when the forecast data is
+ * not yet fetched successfully.
+ * Examples of these popups are <LoadingPopup> and <ErrorPopup>
+ */
 export default function MessagePopup(props) {
   return (
     <div

@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import WeatherIcon from "./WeatherIcon";
 
+/***
+ * Component group on the top of the page. Shows the current date, weather status and
+ * temperature.
+ */
 export default function CurrentWeatherArea({ currentWeather }) {
   const [weatherDateFormat, setWeatherDateFormat] = useState("");
 

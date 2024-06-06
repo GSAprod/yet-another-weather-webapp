@@ -26,11 +26,14 @@ function App() {
     baseURL: "http://localhost:3000",
   });
 
+  // Fetch the weather data as soon as the page loads up
   useEffect(() => {
     fetchWeatherData();
   }, []);
 
+  // Get the background image as soon as the weather is fetched
   function getBackgroundImage() {
+    // TODO Change picture depending on weather forecast
     return imgMetadata.foggy.day[0].path;
   }
 
@@ -57,6 +60,7 @@ function App() {
           fetchWeatherData(attempt + 1);
           return;
         }
+        // After 3 attempts, show an internal error
         setWeatherData(undefined);
         setErrorData({
           error: true,
@@ -68,6 +72,8 @@ function App() {
   }
 
   function refreshWeatherData() {
+    // When we want to refresh the page, instead of completely starting the entire page
+    // loading process, we will just do another api request
     setWeatherData(undefined);
     setErrorData(undefined);
     fetchWeatherData();
@@ -80,6 +86,7 @@ function App() {
         weatherData ? "justify-between" : "justify-center"
       }`}
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
+        
       {weatherData && !weatherData.error ? (
         <>
           <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">

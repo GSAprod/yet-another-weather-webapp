@@ -4,8 +4,9 @@ import CheckSquareIcon from "../assets/icons/check-square-bold.svg?react";
 import WeatherAlert from "./WeatherAlert";
 
 export default function AlertsArea({ alerts }) {
-  //! Change the if to alerts && alerts != []
-  return alerts != undefined && alerts.length > 0 ? (
+  // Alerts will be shown if the prop is a non-empty list. Otherwise, 
+  // we will just show a "No warnings issued" text
+  return alerts && alerts.length != [] ? (
     <div className="flex flex-col gap-3">
       {alerts.map((item) => (
         <WeatherAlert alertData={item} key={uuid()} />

@@ -3,6 +3,10 @@ import FullScreenMenu from "../FullScreenMenu";
 import MagnifyingGlass from "../../assets/icons/magnifying-glass.svg?react";
 import LocationSearchResult from "./LocationSearchResult";
 
+/**
+ * Modal for searching and selecting a location for fetching the weather.
+ * Appears when the Location label is selected on the main page.
+ */
 export default function LocationPicker({ closeFunction }) {
   // TODO Change full height to false and add a search results area
   // TODO Add favourite icon toggle

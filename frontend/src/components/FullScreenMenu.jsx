@@ -1,6 +1,11 @@
 import { func, bool } from "prop-types";
 import { Component, useEffect } from "react";
 
+/***
+ * Generic prop, used to show modals that hide the rest of the page using a
+ * blurred background.
+ * For example, the <LocationPicker> component uses this modal 
+ */
 export default function FullScreenMenu({
   closeFunction,
   fullHeight,
@@ -24,6 +29,7 @@ export default function FullScreenMenu({
 
     document.addEventListener("keydown", onEscapeKeyDown);
     return () => {
+      // After the escape key is pressed and the modal is closed, remove the listener. 
       document.removeEventListener("keydown", onEscapeKeyDown);
     };
   });

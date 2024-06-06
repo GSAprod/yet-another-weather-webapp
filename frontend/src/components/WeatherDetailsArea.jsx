@@ -6,6 +6,10 @@ import WindIcon from "../assets/icons/wind-bold.svg?react";
 import UmbrellaIcon from "../assets/icons/umbrella-bold.svg?react";
 import SunglassesIcon from "../assets/icons/sunglasses-bold.svg?react";
 
+/**
+ * Component group showing less important weather details about the current forecast,
+ * more specifically, the humidity, wind speed, chance of rain and UV index.
+ */
 export default function WeatherDetailsArea({ weatherDetails }) {
   function getWindDirection() {
     return (

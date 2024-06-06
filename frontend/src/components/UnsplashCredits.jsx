@@ -1,5 +1,9 @@
 import PropTypes from "prop-types";
 
+/**
+ * Label on the bottom-left corner, for giving attribution to the author whose
+ * picture is displayed on the background of the webpage.
+ */
 export default function UnsplashCredits({ meta }) {
   return (
     <div className="text-sm">

@@ -1,5 +1,9 @@
 import PropTypes, { string } from "prop-types";
 
+/**
+ * Shows a single property of the current weather, such as humidity and wind speed.
+ * Displayed in the top-right of the webpage, below the location label.
+ */
 export default function WeatherDetail(props) {
   return (
     <div
