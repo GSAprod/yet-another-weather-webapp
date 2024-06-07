@@ -1,6 +1,6 @@
 import { func } from "prop-types";
 import FullScreenMenu from "../FullScreenMenu";
-import MagnifyingGlass from "../../assets/icons/magnifying-glass.svg?react";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 import LocationSearchResult from "./LocationSearchResult";
 
 /**

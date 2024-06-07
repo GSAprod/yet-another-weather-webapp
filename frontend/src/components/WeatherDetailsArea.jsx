@@ -1,10 +1,7 @@
 import PropTypes from "prop-types";
 import WeatherDetail from "./WeatherDetail";
 
-import WaterDropIcon from "../assets/icons/drop-bold.svg?react";
-import WindIcon from "../assets/icons/wind-bold.svg?react";
-import UmbrellaIcon from "../assets/icons/umbrella-bold.svg?react";
-import SunglassesIcon from "../assets/icons/sunglasses-bold.svg?react";
+import { Drop, Wind, Umbrella, Sunglasses } from "@phosphor-icons/react";
 
 /**
  * Component group showing less important weather details about the current forecast,
@@ -21,7 +18,7 @@ export default function WeatherDetailsArea({ weatherDetails }) {
     <div className="flex flex-col gap-3 max-md:items-left max-md:inline-flex max-md:gap-1">
       {weatherDetails && weatherDetails.humidity && (
         <WeatherDetail
-          icon={WaterDropIcon}
+          icon={Drop}
           name="Humidity"
           value={`${weatherDetails.humidity}%`}
         />
@@ -29,7 +26,7 @@ export default function WeatherDetailsArea({ weatherDetails }) {
 
       {weatherDetails && weatherDetails.wind_speed && (
         <WeatherDetail
-          icon={WindIcon}
+          icon={Wind}
           name="Wind speed"
           value={`${weatherDetails.wind_speed} km/h ${getWindDirection()}`}
         />
@@ -37,7 +34,7 @@ export default function WeatherDetailsArea({ weatherDetails }) {
 
       {weatherDetails && weatherDetails.chance_of_rain != undefined && (
         <WeatherDetail
-          icon={UmbrellaIcon}
+          icon={Umbrella}
           name="Chance of rain"
           value={`${weatherDetails.chance_of_rain}%`}
         />
@@ -45,7 +42,7 @@ export default function WeatherDetailsArea({ weatherDetails }) {
 
       {weatherDetails && weatherDetails.uv_index && (
         <WeatherDetail
-          icon={SunglassesIcon}
+          icon={Sunglasses}
           name="UV Index"
           value={`${weatherDetails.uv_index}`}
         />

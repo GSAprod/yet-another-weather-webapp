@@ -1,4 +1,4 @@
-import LoadingIcon from "../assets/icons/spinner.svg?react";
+import { Spinner } from "@phosphor-icons/react"
 import MessagePopup from "./MessagePopup";
 
 /***
@@ -9,7 +9,7 @@ export default function LoadingPopup() {
   return (
     <MessagePopup
       title="Loading..."
-      icon={LoadingIcon}
+      icon={Spinner}
       iconSpin={true}
       refreshButton={false}
     />

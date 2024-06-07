@@ -1,4 +1,5 @@
-import MapPinIcon from "../assets/icons/map-pin-fill.svg?react";
+import { MapPin } from "@phosphor-icons/react";
+
 import { func, string } from "prop-types";
 
 /***
@@ -12,7 +13,7 @@ export default function Location({ locationName, openPickerFunction }) {
     max-sm:flex max-sm:flex-col max-sm:text-center cursor-pointer"
       onClick={openPickerFunction}
     >
-      <MapPinIcon className="w-4 h-auto my-auto fill-white max-sm:hidden" />
+      <MapPin weight="fill" className="w-4 h-auto my-auto fill-white max-sm:hidden" />
 
       <div className="align-baseline">{locationName}</div>
 

@@ -1,4 +1,4 @@
-import SettingsIcon from "../assets/icons/gear-six.svg?react";
+import { GearSix as SettingsIcon } from "@phosphor-icons/react";
 
 export default function SettingsButton() {
   return (

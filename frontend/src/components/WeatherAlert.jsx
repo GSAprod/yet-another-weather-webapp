@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import WarningIcon from "../assets/icons/warning-bold.svg?react";
+import { Warning } from "@phosphor-icons/react";
 
 /**
  * Component showing a single weather alert.
@@ -26,7 +26,7 @@ export default function WeatherAlert({ alertData }) {
     <div className="flex gap-3 justify-end h-fit">
       <div className="text-white text-end">{alertData.name}</div>
 
-      <WarningIcon className={`w-4 h-auto mt-1 mb-auto shrink-0 ${selectWarningColor()}`} />
+      <Warning className={`w-4 h-auto mt-1 mb-auto shrink-0 ${selectWarningColor()}`} />
     </div>
   );
 }

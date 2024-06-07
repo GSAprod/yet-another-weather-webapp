@@ -1,5 +1,5 @@
 import PropTypes, { bool, number, string } from "prop-types";
-import ErrorIcon from "../assets/icons/cloud-slash.svg?react";
+import { CloudSlash as ErrorIcon } from "@phosphor-icons/react";
 import MessagePopup from "./MessagePopup";
 
 export default function ErrorPopup({ errorData, refreshFunction }) {

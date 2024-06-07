@@ -9,7 +9,7 @@ export default function WeatherDetail(props) {
     <div
       className="w-fit grid grid-cols-[auto auto] gap-x-2 max-md:flex 
     max-md:items-center max-md:gap-1">
-      <props.icon className="w-4 h-auto my-auto fill-white max-md:fill-white/50" />
+      <props.icon weight="bold" className="w-4 h-auto my-auto fill-white max-md:fill-white/50" />
 
       <div className="align-baseline mb-0 max-md:text-white/50 max-md:order-1">
         {props.name}

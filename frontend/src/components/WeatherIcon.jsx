@@ -1,12 +1,12 @@
-import SunIcon from "../assets/icons/weather/sun.svg?react";
-import MoonIcon from "../assets/icons/weather/moon.svg?react";
-import CloudSunIcon from "../assets/icons/weather/cloud-sun.svg?react";
-import CloudMoonIcon from "../assets/icons/weather/cloud-moon.svg?react";
-import CloudIcon from "../assets/icons/weather/cloud.svg?react";
-import CloudFogIcon from "../assets/icons/weather/cloud-fog.svg?react";
-import CloudRainIcon from "../assets/icons/weather/cloud-rain.svg?react";
-import CloudSnowIcon from "../assets/icons/weather/cloud-snow.svg?react";
-import CloudLightningIcon from "../assets/icons/weather/cloud-lightning.svg?react";
+import { 
+  Sun, Moon,
+  CloudSun, CloudMoon,
+  Cloud,
+  CloudFog,
+  CloudRain,
+  CloudSnow,
+  CloudLightning
+} from "@phosphor-icons/react"
 
 import PropTypes from "prop-types";
 
@@ -23,28 +23,28 @@ export default function WeatherIcon({ condition, timeOfDay, size }) {
     case "sunny":
     default:
       return timeOfDay === "night" ? (
-        <MoonIcon className={iconSizeCss} />
+        <Moon className={iconSizeCss} />
       ) : (
-        <SunIcon className={iconSizeCss} />
+        <Sun className={iconSizeCss} />
       );
     case "partly-cloudy":
       return timeOfDay === "night" ? (
-        <CloudSunIcon className={iconSizeCss} />
+        <CloudSun className={iconSizeCss} />
       ) : (
-        <CloudMoonIcon className={iconSizeCss} />
+        <CloudMoon className={iconSizeCss} />
       );
     case "cloudy":
-      return <CloudIcon className={iconSizeCss} />;
+      return <Cloud className={iconSizeCss} />;
     case "foggy":
-      return <CloudFogIcon className={iconSizeCss} />;
+      return <CloudFog className={iconSizeCss} />;
     case "drizzle":
     case "rain":
     case "showers":
-      return <CloudRainIcon className={iconSizeCss} />;
+      return <CloudRain className={iconSizeCss} />;
     case "snow":
-      return <CloudSnowIcon className={iconSizeCss} />;
+      return <CloudSnow className={iconSizeCss} />;
     case "thunderstorm":
-      return <CloudLightningIcon className={iconSizeCss} />;
+      return <CloudLightning className={iconSizeCss} />;
   }
 }
 
