@@ -1,4 +1,5 @@
 import OpenWeatherTest from "../examples/open_meteo_json.js";
+import OpenWeatherGeocodingTest from "../examples/open_meteo_geocoding_json.js";
 import axios from "axios";
 
 export default class OpenMeteoAPI {
@@ -6,7 +7,11 @@ export default class OpenMeteoAPI {
         this.endpoint = axios.create({
             baseURL: "https://api.open-meteo.com/v1",
             timeout: 10000
-        })
+        });
+        this.geocoding = axios.create({
+            baseURL: "https://geocoding-api.open-meteo.com/v1",
+            timeout: 10000
+        });
     }
 
     async format_response(data, location) {
@@ -118,6 +123,108 @@ export default class OpenMeteoAPI {
             });
             
             return [response.status, await this.format_response(response.data, "Lisbon, Portugal")];
+        } catch(error) {
+            let errorData = {
+                error: true
+            }
+
+            if (error.response) {
+                errorData = {
+                    ...errorData,
+                    type: error.response.status < 500 ? "internal" : "api",
+                    status: error.response.status,
+                    reason: `OpenMeteo API - ${error.response.data.reason} (${error.response.status})`
+                }
+            } else {
+                errorData = {
+                    ...errorData,
+                    type: "axios",
+                    reason: `Axios - ${error.message}`
+                }
+            }
+            return [500, JSON.stringify(errorData)];
+        }
+    }
+
+    async append_administrative_region(admin_num, indexes, data, formattedResponse) {
+        const similarResults = {};
+        const admin_attr = "admin" + admin_num;
+        
+        // Append the parameter for each location
+        indexes.forEach((index) => {
+            if (!data.results[index][admin_attr]) return;   // (continue)
+
+            formattedResponse[index].description = 
+                data.results[index][admin_attr] + ", " + 
+                formattedResponse[index].description;
+
+            // Attach each result into a list of administrative regions
+            const admin_attr_id = data.results[index][admin_attr + "_id"]
+            if (!similarResults[admin_attr_id]) {
+                similarResults[admin_attr_id] = [index]
+            } else {
+                similarResults[admin_attr_id].push(index);
+            }
+        });
+
+        // For each location that is in the same administrative region, 
+        // specify it further
+        Object.keys(similarResults).forEach(key => {
+            if (similarResults[key].length === 1) return;
+
+            this.append_administrative_region(admin_num + 1, similarResults[key], data, formattedResponse);
+        })
+    }
+
+    async format_geolocation_response(data) {
+        const formattedResponse = [];
+        const similarResults = {}
+
+        // Add the parameters for each location (location details contain only the country, for now)
+        for (let i = 0; i < data.results.length; i++) {
+            let result = data.results[i];
+            const formattedResult = {
+                latitude: result.latitude,
+                longitude: result.longitude,
+                name: result.name,
+                description: result.country
+            };
+            formattedResponse.push(formattedResult);
+            
+            // Attach each result into a list of countries and names
+            let resultType = result.country_id + "/" + result.name
+            if (!similarResults[resultType]) {
+                similarResults[resultType] = [i];
+            } else {
+                similarResults[resultType].push(i);
+            };
+        }
+
+        // For each location that has the same name and is in the same country, 
+        // specify the next administrative region in the description
+        Object.keys(similarResults).forEach(resType => {
+            // no need to specify the region if the resultType is unique
+            if (similarResults[resType].length === 1) return;
+
+            this.append_administrative_region(1, similarResults[resType], data, formattedResponse);
+        });
+
+        return formattedResponse;
+    }
+
+    async search_geolocations(searchTerm) {
+        // TODO Remove this line when testing
+        //return [200, await this.format_geolocation_response(OpenWeatherGeocodingTest)];
+
+        try {
+            const response = await this.geocoding.get("/search", {
+                params: {
+                    name: searchTerm,
+                    count: 10
+                }
+            });
+            
+            return [response.status, await this.format_geolocation_response(response.data)];
         } catch(error) {
             let errorData = {
                 error: true
