@@ -48,7 +48,7 @@ export default function LocationPicker({ closeFunction }) {
   }
 
   return (
-    <FullScreenMenu closeFunction={closeFunction} fullHeight={false}>
+    <FullScreenMenu closeFunction={closeFunction} fullHeight={true}>
       <LocationPickerSearchBar
         closeFunction={closeFunction}
         searchLocation={searchLocation}
@@ -56,11 +56,11 @@ export default function LocationPicker({ closeFunction }) {
       />
 
       {searchResults.length > 0 && (
-        <div>
-          <div className="border border-transparent border-b-white/20" />
+        <div className="border border-transparent border-b-white/20" />
+      )}
 
-          <LocationSearchResultsList resultsList={searchResults} />
-        </div>
+      {searchResults.length > 0 && (
+        <LocationSearchResultsList resultsList={searchResults} />
       )}
     </FullScreenMenu>
   );

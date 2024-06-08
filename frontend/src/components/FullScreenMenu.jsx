@@ -43,8 +43,8 @@ export default function FullScreenMenu({
       <div
         className={
           "w-full max-w-screen-md rounded-xl backdrop-brightness-75 " +
-          "shadow shadow-black/25 sm:border border-white/20 max-sm:rounded-none overflow-hidden " +
-          (fullHeight === true ? "h-full" : "") + "max-sm:h-full"
+          "shadow shadow-black/25 sm:border border-white/20 max-sm:rounded-none overflow-hidden min-h-0 flex flex-col " +
+          (fullHeight === true ? "h-min" : "") + "max-sm:h-full min-h-full"
         }>
         {children}
       </div>

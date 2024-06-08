@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default function LocationSearchResultsList({ resultsList }) {
   return (
     // TODO Enable scrolling
-    <div>
+    <div className="min-h-0 overflow-scroll">
       {resultsList.map(result => (
         <LocationSearchResult
           key={result.id}
