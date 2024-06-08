@@ -184,6 +184,7 @@ export default class OpenMeteoAPI {
         for (let i = 0; i < data.results.length; i++) {
             let result = data.results[i];
             const formattedResult = {
+                id: result.id,
                 latitude: result.latitude,
                 longitude: result.longitude,
                 name: result.name,

@@ -2,18 +2,17 @@ import { useState } from "react";
 import axios from "axios";
 import { func } from "prop-types";
 import FullScreenMenu from "../FullScreenMenu";
-import LocationSearchResult from "./LocationSearchResult";
 import LocationPickerSearchBar from "./LocationPickerSearchBar";
+import LocationSearchResultsList from "./LocationSearchResultsList";
 
 /**
  * Modal for searching and selecting a location for fetching the weather.
  * Appears when the Location label is selected on the main page.
  */
 export default function LocationPicker({ closeFunction }) {
-  // TODO Change full height to false and add a search results area
   // TODO Add favourite icon toggle
   const [isSearching, setIsSearching] = useState(false);
-  const [searchResults, setSearchResults] = useState(["kdjf", "sdjfkd"]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const client = axios.create({
     baseURL: "http://localhost:3000",
@@ -57,14 +56,11 @@ export default function LocationPicker({ closeFunction }) {
       />
 
       {searchResults.length > 0 && (
-        <>
+        <div>
           <div className="border border-transparent border-b-white/20" />
 
-          <LocationSearchResult name={"Lisbon"} description={"Portugal"} />
-          <LocationSearchResult name={"Amsterdam"} description={"Netherlands"} />
-          <LocationSearchResult name={"Berlin"} description={"Germany"} />
-          <LocationSearchResult name={"Madrid"} description={"Spain"} />
-        </>
+          <LocationSearchResultsList resultsList={searchResults} />
+        </div>
       )}
     </FullScreenMenu>
   );
