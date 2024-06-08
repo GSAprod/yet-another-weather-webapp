@@ -1,7 +1,9 @@
+import { useState } from "react";
+import axios from "axios";
 import { func } from "prop-types";
 import FullScreenMenu from "../FullScreenMenu";
-import { MagnifyingGlass } from "@phosphor-icons/react";
 import LocationSearchResult from "./LocationSearchResult";
+import LocationPickerSearchBar from "./LocationPickerSearchBar";
 
 /**
  * Modal for searching and selecting a location for fetching the weather.
@@ -10,33 +12,60 @@ import LocationSearchResult from "./LocationSearchResult";
 export default function LocationPicker({ closeFunction }) {
   // TODO Change full height to false and add a search results area
   // TODO Add favourite icon toggle
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchResults, setSearchResults] = useState(["kdjf", "sdjfkd"]);
+
+  const client = axios.create({
+    baseURL: "http://localhost:3000",
+  });
+
+  async function searchLocation(searchTerm) {
+    // Don't call the API if the search term is empty, instead, empty the results array
+    if (searchTerm === "") {
+      setSearchResults([]);
+      return;
+    }
+
+    setIsSearching(true);
+    try {
+      const response = await client.get("/search_location?name=" + searchTerm, {
+        timeout: 10000,
+      });
+      setSearchResults(response.data);
+      setIsSearching(false);
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the 200 range
+        console.log("Error: ", error.response.status);
+        console.log(error.response.headers);
+        console.log(error.response.data);
+        // TODO
+      } else if (error.request) {
+        // After 3 attempts, show an internal error
+        // TODO
+      }
+    }
+  }
+
   return (
     <FullScreenMenu closeFunction={closeFunction} fullHeight={false}>
-      <div className="p-5 flex gap-2 border border-transparent border-b-white/20">
-        <MagnifyingGlass className="w-6 h-auto fill-white" />
+      <LocationPickerSearchBar
+        closeFunction={closeFunction}
+        searchLocation={searchLocation}
+        isSearching={isSearching}
+      />
 
-        <form action="#" className="w-full flex align-center">
-          <input
-            className="w-full bg-transparent outline-none"
-            placeholder="Search for a city, country or zip code"
-            type="text"
-            name="locationInput"
-            id="locationInput"
-          />
-        </form>
+      {searchResults.length > 0 && (
+        <>
+          <div className="border border-transparent border-b-white/20" />
 
-        <button
-          className="p-1 bg-black/25 rounded text-xs text-white/50 font-bold 
-          select-none"
-          onClick={closeFunction}>
-          ESC
-        </button>
-      </div>
-
-      <LocationSearchResult name={"Lisbon"} description={"Portugal"} />
-      <LocationSearchResult name={"Amsterdam"} description={"Netherlands"} />
-      <LocationSearchResult name={"Berlin"} description={"Germany"} />
-      <LocationSearchResult name={"Madrid"} description={"Spain"} />
+          <LocationSearchResult name={"Lisbon"} description={"Portugal"} />
+          <LocationSearchResult name={"Amsterdam"} description={"Netherlands"} />
+          <LocationSearchResult name={"Berlin"} description={"Germany"} />
+          <LocationSearchResult name={"Madrid"} description={"Spain"} />
+        </>
+      )}
     </FullScreenMenu>
   );
 }

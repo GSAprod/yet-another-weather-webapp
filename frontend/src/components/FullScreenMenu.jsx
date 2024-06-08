@@ -1,5 +1,5 @@
-import { func, bool } from "prop-types";
-import { Component, useEffect } from "react";
+import { func, bool, node } from "prop-types";
+import { useEffect } from "react";
 
 /***
  * Generic prop, used to show modals that hide the rest of the page using a
@@ -55,5 +55,5 @@ export default function FullScreenMenu({
 FullScreenMenu.propTypes = {
   fullHeight: bool,
   closeFunction: func.isRequired,
-  children: Component,
+  children: node,
 };

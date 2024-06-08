@@ -106,7 +106,7 @@ export default class OpenMeteoAPI {
     }
 
     async get_weather() {
-        // TODO Remove this line when testing
+        // TODO Uncomment this line when testing
         return [200, await this.format_response(OpenWeatherTest, "Lisbon, Portugal")];
 
         try {
@@ -213,8 +213,8 @@ export default class OpenMeteoAPI {
     }
 
     async search_geolocations(searchTerm) {
-        // TODO Remove this line when testing
-        //return [200, await this.format_geolocation_response(OpenWeatherGeocodingTest)];
+        // TODO Uncomment this line when testing
+        return [200, await this.format_geolocation_response(OpenWeatherGeocodingTest)];
 
         try {
             const response = await this.geocoding.get("/search", {
