@@ -37,14 +37,13 @@ export default function FullScreenMenu({
   return (
     <div
       className="fixed left-0 top-0 w-full h-full backdrop-blur-md backdrop-brightness-90
-        max-md:px-10 p-20 flex flex-col items-center
-        max-sm:p-0"
+        max-md:px-10 p-20 flex flex-col items-center max-sm:p-0"
       onClick={onBackgroundClick}>
       <div
         className={
           "w-full max-w-screen-md rounded-xl backdrop-brightness-75 " +
           "shadow shadow-black/25 sm:border border-white/20 max-sm:rounded-none overflow-hidden min-h-0 flex flex-col " +
-          (fullHeight === true ? "h-min" : "") + "max-sm:h-full min-h-full"
+          (fullHeight === true ? "h-min " : "") + "max-sm:min-h-screen"
         }>
         {children}
       </div>
