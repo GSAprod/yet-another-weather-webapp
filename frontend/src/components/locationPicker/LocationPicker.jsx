@@ -59,6 +59,10 @@ export default function LocationPicker({ closeFunction }) {
         <div className="border border-transparent border-b-white/20" />
       )}
 
+      {false /* TODO */ && (
+        <LocationPickerError />
+      )}
+
       {searchResults.length > 0 && (
         <LocationSearchResultsList resultsList={searchResults} />
       )}
