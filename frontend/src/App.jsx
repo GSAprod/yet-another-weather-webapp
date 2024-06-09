@@ -123,7 +123,7 @@ function App() {
           </div>
 
           <div className="grid grid-cols-5">
-            <div className="flex flex-col justify-end gap-1 max-sm:invisible">
+            <div className="flex flex-col justify-end gap-1 max-sm:col-span-4 max-sm:order-2">
               <ApiCredits
                 name={weatherData.api_name}
                 href={weatherData.api_url}
@@ -135,7 +135,7 @@ function App() {
 
             <ForecastArea forecastData={weatherData.forecast} />
 
-            <div className="self-end justify-self-end">
+            <div className="self-end justify-self-end max-sm:order-2">
               <SettingsButton />
             </div>
           </div>
