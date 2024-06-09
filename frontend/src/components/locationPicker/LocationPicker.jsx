@@ -4,6 +4,7 @@ import { func } from "prop-types";
 import FullScreenMenu from "../FullScreenMenu";
 import LocationPickerSearchBar from "./LocationPickerSearchBar";
 import LocationSearchResultsList from "./LocationSearchResultsList";
+import LocationPickerError from "./LocationPickerError";
 
 /**
  * Modal for searching and selecting a location for fetching the weather.
@@ -13,6 +14,7 @@ export default function LocationPicker({ closeFunction }) {
   // TODO Add favourite icon toggle
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const client = axios.create({
     baseURL: "http://localhost:3000",
@@ -22,6 +24,7 @@ export default function LocationPicker({ closeFunction }) {
     // Don't call the API if the search term is empty, instead, empty the results array
     if (searchTerm === "") {
       setSearchResults([]);
+      setErrorMessage(null);
       return;
     }
 
@@ -30,8 +33,17 @@ export default function LocationPicker({ closeFunction }) {
       const response = await client.get("/search_location?name=" + searchTerm, {
         timeout: 10000,
       });
-      setSearchResults(response.data);
-      setIsSearching(false);
+      console.log(response.data)
+      if (response.data.length === 0) {
+        setErrorMessage("Could not find results for " + searchTerm + ".");
+        setSearchResults([]);
+        setIsSearching(false);
+      } else {
+        setSearchResults(response.data);
+        setErrorMessage(null);
+        setIsSearching(false);
+      }
+
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -55,12 +67,12 @@ export default function LocationPicker({ closeFunction }) {
         isSearching={isSearching}
       />
 
-      {searchResults.length > 0 && (
+      {(searchResults.length > 0 || errorMessage) && (
         <div className="border border-transparent border-b-white/20" />
       )}
 
-      {false /* TODO */ && (
-        <LocationPickerError />
+      {errorMessage && (
+        <LocationPickerError message={errorMessage} />
       )}
 
       {searchResults.length > 0 && (

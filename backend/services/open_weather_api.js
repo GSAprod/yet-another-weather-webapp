@@ -224,6 +224,10 @@ export default class OpenMeteoAPI {
                     count: 10
                 }
             });
+
+            if (response.data.results === undefined) {
+                return [response.status, []];
+            }
             
             return [response.status, await this.format_geolocation_response(response.data)];
         } catch(error) {
