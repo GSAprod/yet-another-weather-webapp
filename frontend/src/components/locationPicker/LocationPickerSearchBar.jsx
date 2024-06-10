@@ -12,9 +12,12 @@ export default function LocationPickerSearchBar({
   const [searchTerm, setSearchTerm] = useState("");
   const [lastSearchTerm, setLastSearchTerm] = useState("");
   const [searchDelay, setSearchDelay] = useState();
-  
-  function changeSearchTerm(e) {
-    setSearchTerm(e.target.value);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (searchDelay) clearTimeout(searchDelay);
+    startSearch();
   }
 
   // This function sets a timer after a change in the input. This timer triggers
@@ -40,16 +43,16 @@ export default function LocationPickerSearchBar({
         <MagnifyingGlass className="w-6 h-auto fill-white" />
       )}
 
-      <form action="#" className="w-full flex align-center">
+      <form action="#" className="w-full flex align-center" onSubmit={handleSubmit}>
         <input
           className="w-full bg-transparent outline-none"
-          placeholder="Search for a city, country or zip code"
+          placeholder="Search location"
           type="text"
           name="locationInput"
           id="locationInput"
           autoComplete="off"
           value={searchTerm}
-          onChange={changeSearchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
       <button
