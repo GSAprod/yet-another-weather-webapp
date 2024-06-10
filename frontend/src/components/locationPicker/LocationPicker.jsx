@@ -5,12 +5,13 @@ import FullScreenMenu from "../FullScreenMenu";
 import LocationPickerSearchBar from "./LocationPickerSearchBar";
 import LocationSearchResultsList from "./LocationSearchResultsList";
 import LocationPickerError from "./LocationPickerError";
+import Cookies from "js-cookie";
 
 /**
  * Modal for searching and selecting a location for fetching the weather.
  * Appears when the Location label is selected on the main page.
  */
-export default function LocationPicker({ closeFunction }) {
+export default function LocationPicker({ closeFunction, onSelect }) {
   // TODO Add favourite icon toggle
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -30,7 +31,10 @@ export default function LocationPicker({ closeFunction }) {
 
     setIsSearching(true);
     try {
-      const response = await client.get("/search_location?name=" + searchTerm, {
+      const response = await client.get("/search_location", {
+        params: {
+          name: searchTerm,
+        },
         timeout: 10000,
       });
       console.log(response.data)
@@ -63,6 +67,14 @@ export default function LocationPicker({ closeFunction }) {
     }
   }
 
+  async function selectLocation(resultId) {
+    const selected = searchResults.find(result => result.id === resultId);
+
+    Cookies.set('location', JSON.stringify(selected));
+
+    onSelect();
+  }
+
   return (
     <FullScreenMenu closeFunction={closeFunction} fullHeight={true}>
       <LocationPickerSearchBar
@@ -80,7 +92,7 @@ export default function LocationPicker({ closeFunction }) {
       )}
 
       {searchResults.length > 0 && (
-        <LocationSearchResultsList resultsList={searchResults} />
+        <LocationSearchResultsList resultsList={searchResults} onSelect={selectLocation} />
       )}
     </FullScreenMenu>
   );
@@ -88,4 +100,5 @@ export default function LocationPicker({ closeFunction }) {
 
 LocationPicker.propTypes = {
   closeFunction: func.isRequired,
+  onSelect: func.isRequired
 };

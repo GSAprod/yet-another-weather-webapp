@@ -10,7 +10,13 @@ app.use(cors());
 app.get("/get_weather", async (req, res) => {
   let service = new OpenMeteoAPI();
 
-  const response = await service.get_weather();
+  let locationParams = {
+    name: req.query.name,
+    latitude: req.query.latitude,
+    longitude: req.query.longitude,
+  }
+
+  const response = await service.get_weather(locationParams);
   res.status(response[0]).send(response[1]);
 });
 

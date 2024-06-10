@@ -105,15 +105,15 @@ export default class OpenMeteoAPI {
         return JSON.stringify(formattedOutput);
     }
 
-    async get_weather() {
+    async get_weather(locationParams) {
         // TODO Uncomment this line when testing
-        return [200, await this.format_response(OpenWeatherTest, "Lisbon, Portugal")];
+        return [200, await this.format_response(OpenWeatherTest, locationParams.name)];
 
         try {
             const response = await this.endpoint.get("/forecast", {
                 params: {
-                    latitude: 38.7167,
-                    longitude: -9.1333,
+                    latitude: locationParams.latitude,
+                    longitude: locationParams.longitude,
                     timezone: "auto",
                     timeformat: "unixtime",
                     current: "temperature_2m,relative_humidity_2m,is_day,weather_code,wind_speed_10m,wind_direction_10m",
@@ -122,7 +122,7 @@ export default class OpenMeteoAPI {
                 }
             });
             
-            return [response.status, await this.format_response(response.data, "Lisbon, Portugal")];
+            return [response.status, await this.format_response(response.data, locationParams.name)];
         } catch(error) {
             let errorData = {
                 error: true

@@ -1,7 +1,7 @@
 import LocationSearchResult from "./LocationSearchResult";
 import PropTypes from "prop-types";
 
-export default function LocationSearchResultsList({ resultsList }) {
+export default function LocationSearchResultsList({ resultsList, onSelect }) {
   return (
     // TODO Enable scrolling
     <div className="min-h-0 overflow-scroll">
@@ -10,6 +10,7 @@ export default function LocationSearchResultsList({ resultsList }) {
           key={result.id}
           name={result.name}
           description={result.description}
+          onSelect={() => onSelect(result.id)}
         />
       ))}
     </div>
@@ -26,4 +27,5 @@ LocationSearchResultsList.propTypes = {
       description: PropTypes.string,
     })
   ),
+  onSelect: PropTypes.func.isRequired,
 };

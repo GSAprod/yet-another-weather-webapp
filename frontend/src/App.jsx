@@ -15,6 +15,7 @@ import SettingsButton from "./components/SettingsButton";
 import ErrorPopup from "./components/ErrorPopup";
 import LoadingPopup from "./components/LoadingPopup";
 import LocationPicker from "./components/locationPicker/LocationPicker";
+import Cookies from "js-cookie";
 
 function App() {
   const [errorData, setErrorData] = useState(undefined);
@@ -37,10 +38,36 @@ function App() {
     return imgMetadata.foggy.day[0].path;
   }
 
+  function getStoredLocation() {
+    let locationData = Cookies.get('location');
+    let location;
+
+    if (locationData === undefined) {
+      // Add a default location for the 1st access to the website
+      location = {
+          id: 2267057,
+          latitude: 38.71667,
+          longitude: -9.13333,
+          name: "Lisbon",
+          description: "Portugal"
+      };
+      Cookies.set('location', JSON.stringify(location));
+    } else {
+      location = JSON.parse(locationData);
+    }
+    return location;
+  }
+
   async function fetchWeatherData(attempt = 1) {
+    const location = getStoredLocation();
     try {
       const response = await client.get("/get_weather", {
         timeout: 5000*(attempt * .75),
+        params: {
+          latitude: location.latitude,
+          longitude: location.longitude,
+          name: location.name + ", " + location.description,
+        },
       });
       setWeatherData(response.data);
       setErrorData(undefined);
@@ -77,6 +104,11 @@ function App() {
     setWeatherData(undefined);
     setErrorData(undefined);
     fetchWeatherData();
+  }
+
+  function handleLocationChange() {
+    setIsLocationPickerOpen(false);
+    refreshWeatherData();
   }
 
   return (
@@ -139,7 +171,7 @@ function App() {
               <SettingsButton />
             </div>
           </div>
-          { isLocationPickerOpen && <LocationPicker closeFunction={() => setIsLocationPickerOpen(false)} /> }
+          { isLocationPickerOpen && <LocationPicker closeFunction={() => setIsLocationPickerOpen(false)} onSelect={handleLocationChange} /> }
         </>
       ) : errorData ? (
         <ErrorPopup errorData={errorData} refreshFunction={refreshWeatherData} />
