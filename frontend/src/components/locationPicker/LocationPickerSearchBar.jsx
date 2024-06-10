@@ -51,6 +51,7 @@ export default function LocationPickerSearchBar({
           name="locationInput"
           id="locationInput"
           autoComplete="off"
+          autoFocus
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
