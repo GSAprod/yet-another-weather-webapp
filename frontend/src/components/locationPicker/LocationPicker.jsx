@@ -14,14 +14,18 @@ import Cookies from "js-cookie";
 export default function LocationPicker({ closeFunction, onSelect }) {
   // TODO Add favourite icon toggle
   const [isSearching, setIsSearching] = useState(false);
+
   const [searchResults, setSearchResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const [isFocusedOnRes, setIsFocusedOnRes] = useState(false);
 
   const client = axios.create({
     baseURL: "http://localhost:3000",
   });
 
   async function searchLocation(searchTerm) {
+    setIsFocusedOnRes(false);
     // Don't call the API if the search term is empty, instead, empty the results array
     if (searchTerm === "") {
       setSearchResults([]);
@@ -37,7 +41,6 @@ export default function LocationPicker({ closeFunction, onSelect }) {
         },
         timeout: 10000,
       });
-      console.log(response.data)
       if (response.data.length === 0) {
         setErrorMessage("Could not find results for " + searchTerm + ".");
         setSearchResults([]);
@@ -47,7 +50,6 @@ export default function LocationPicker({ closeFunction, onSelect }) {
         setErrorMessage(null);
         setIsSearching(false);
       }
-
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -60,17 +62,22 @@ export default function LocationPicker({ closeFunction, onSelect }) {
         setIsSearching(false);
       } else if (error.request) {
         // After 3 attempts, show an internal error
-        setErrorMessage("An internal error has occurred. Please try again later.");
+        setErrorMessage(
+          "An internal error has occurred. Please try again later."
+        );
         setSearchResults([]);
         setIsSearching(false);
       }
     }
   }
 
-  async function selectLocation(resultId) {
-    const selected = searchResults.find(result => result.id === resultId);
+  function focusOnResults() {
+    setIsFocusedOnRes(true);
+  }
 
-    Cookies.set('location', JSON.stringify(selected));
+  async function selectLocation(resultId) {
+    const selected = searchResults.find((result) => result.id === resultId);
+    Cookies.set("location", JSON.stringify(selected));
 
     onSelect();
   }
@@ -81,18 +88,21 @@ export default function LocationPicker({ closeFunction, onSelect }) {
         closeFunction={closeFunction}
         searchLocation={searchLocation}
         isSearching={isSearching}
+        focusOnResults={focusOnResults}
       />
 
       {(searchResults.length > 0 || errorMessage) && (
         <div className="border border-transparent border-b-white/20" />
       )}
 
-      {errorMessage && (
-        <LocationPickerError message={errorMessage} />
-      )}
+      {errorMessage && <LocationPickerError message={errorMessage} />}
 
       {searchResults.length > 0 && (
-        <LocationSearchResultsList resultsList={searchResults} onSelect={selectLocation} />
+        <LocationSearchResultsList
+          resultsList={searchResults}
+          onSelect={selectLocation}
+          focused={isFocusedOnRes}
+        />
       )}
     </FullScreenMenu>
   );
@@ -100,5 +110,5 @@ export default function LocationPicker({ closeFunction, onSelect }) {
 
 LocationPicker.propTypes = {
   closeFunction: func.isRequired,
-  onSelect: func.isRequired
+  onSelect: func.isRequired,
 };

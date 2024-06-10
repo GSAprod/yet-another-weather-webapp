@@ -8,6 +8,7 @@ export default function LocationPickerSearchBar({
   closeFunction,
   searchLocation,
   isSearching,
+  focusOnResults,
 }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [lastSearchTerm, setLastSearchTerm] = useState("");
@@ -18,6 +19,7 @@ export default function LocationPickerSearchBar({
 
     if (searchDelay) clearTimeout(searchDelay);
     startSearch();
+    focusOnResults();
   }
 
   // This function sets a timer after a change in the input. This timer triggers
@@ -70,4 +72,5 @@ LocationPickerSearchBar.propTypes = {
   closeFunction: func.isRequired,
   searchLocation: func.isRequired,
   isSearching: bool.isRequired,
+  focusOnResults: func.isRequired,
 };
