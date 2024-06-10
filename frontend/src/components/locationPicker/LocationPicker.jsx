@@ -51,10 +51,14 @@ export default function LocationPicker({ closeFunction }) {
         console.log("Error: ", error.response.status);
         console.log(error.response.headers);
         console.log(error.response.data);
-        // TODO
+        setErrorMessage(error.response.data.reason);
+        setSearchResults([]);
+        setIsSearching(false);
       } else if (error.request) {
         // After 3 attempts, show an internal error
-        // TODO
+        setErrorMessage("An internal error has occurred. Please try again later.");
+        setSearchResults([]);
+        setIsSearching(false);
       }
     }
   }
