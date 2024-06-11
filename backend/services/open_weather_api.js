@@ -2,6 +2,10 @@ import OpenWeatherTest from "../examples/open_meteo_json.js";
 import OpenWeatherGeocodingTest from "../examples/open_meteo_geocoding_json.js";
 import axios from "axios";
 
+//* Change this to true to use the test examples instead of making API calls.
+//* Preserves API quota.
+const TEST_MODE = true;
+
 export default class OpenMeteoAPI {
     constructor() {
         this.endpoint = axios.create({
@@ -106,8 +110,8 @@ export default class OpenMeteoAPI {
     }
 
     async get_weather(locationParams) {
-        // TODO Uncomment this line when testing
-        return [200, await this.format_response(OpenWeatherTest, locationParams.name)];
+        if (TEST_MODE)
+            return [200, await this.format_response(OpenWeatherTest, locationParams.name)];
 
         try {
             const response = await this.endpoint.get("/forecast", {
@@ -214,8 +218,8 @@ export default class OpenMeteoAPI {
     }
 
     async search_geolocations(searchTerm) {
-        // TODO Uncomment this line when testing
-        return [200, await this.format_geolocation_response(OpenWeatherGeocodingTest)];
+        if (TEST_MODE)
+            return [200, await this.format_geolocation_response(OpenWeatherGeocodingTest)];
 
         try {
             const response = await this.geocoding.get("/search", {
