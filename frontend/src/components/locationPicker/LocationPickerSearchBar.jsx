@@ -60,7 +60,7 @@ export default function LocationPickerSearchBar({
       </form>
       <button
         className="p-1 bg-black/25 rounded text-xs text-white/50 font-bold 
-          select-none"
+          select-none uppercase"
         onClick={closeFunction}>
         ESC
       </button>
