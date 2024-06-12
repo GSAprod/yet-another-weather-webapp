@@ -16,12 +16,13 @@ import ErrorPopup from "./components/ErrorPopup";
 import LoadingPopup from "./components/LoadingPopup";
 import LocationPicker from "./components/locationPicker/LocationPicker";
 import Cookies from "js-cookie";
+import SettingsModal from "./components/settingsModal/SettingsModal";
 
 function App() {
   const [errorData, setErrorData] = useState(undefined);
   const [weatherData, setWeatherData] = useState();
 
-  const [isLocationPickerOpen, setIsLocationPickerOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(null);
 
   const client = axios.create({
     baseURL: "http://localhost:3000",
@@ -39,19 +40,19 @@ function App() {
   }
 
   function getStoredLocation() {
-    let locationData = Cookies.get('location');
+    let locationData = Cookies.get("location");
     let location;
 
     if (locationData === undefined) {
       // Add a default location for the 1st access to the website
       location = {
-          id: 2267057,
-          latitude: 38.71667,
-          longitude: -9.13333,
-          name: "Lisbon",
-          description: "Portugal"
+        id: 2267057,
+        latitude: 38.71667,
+        longitude: -9.13333,
+        name: "Lisbon",
+        description: "Portugal",
       };
-      Cookies.set('location', JSON.stringify(location));
+      Cookies.set("location", JSON.stringify(location));
     } else {
       location = JSON.parse(locationData);
     }
@@ -62,7 +63,7 @@ function App() {
     const location = getStoredLocation();
     try {
       const response = await client.get("/get_weather", {
-        timeout: 5000*(attempt * .75),
+        timeout: 5000 * (attempt * 0.75),
         params: {
           latitude: location.latitude,
           longitude: location.longitude,
@@ -92,7 +93,7 @@ function App() {
         setErrorData({
           error: true,
           type: "internal",
-          reason: "Request timed out. Please try again later."
+          reason: "Request timed out. Please try again later.",
         });
       }
     }
@@ -107,31 +108,29 @@ function App() {
   }
 
   function handleLocationChange() {
-    setIsLocationPickerOpen(false);
+    setModalOpen(null);
     refreshWeatherData();
   }
 
   return (
     <div
       className={`webapp-container p-6 border-box min-h-full flex flex-col 
-      bg-cover bg-center ${
-        weatherData ? "justify-between" : "justify-center"
-      }`}
+      bg-cover bg-center ${weatherData ? "justify-between" : "justify-center"}`}
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
-        
       {weatherData && !weatherData.error ? (
         <>
           <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
             <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
-              <Location locationName={weatherData.location} openPickerFunction={() => setIsLocationPickerOpen(true)} />
+              <Location
+                locationName={weatherData.location}
+                openPickerFunction={() => setModalOpen("location_picker")}
+              />
             </div>
 
             <div
               className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 
         max-md:col-span-2">
-              <CurrentWeatherArea
-                currentWeather={weatherData.current}
-              />
+              <CurrentWeatherArea currentWeather={weatherData.current} />
             </div>
 
             <div className="max-md:order-2 max-md:col-span-2">
@@ -144,9 +143,7 @@ function App() {
             <div
               className="max-md:order-2 max-md:col-span-2 max-md:flex 
         max-md:justify-center max-md:mb-10">
-              <WeatherDetailsArea
-                weatherDetails={weatherData.details}
-              />
+              <WeatherDetailsArea weatherDetails={weatherData.details} />
             </div>
 
             <div className="max-md:order-1 max-sm:hidden">
@@ -168,13 +165,28 @@ function App() {
             <ForecastArea forecastData={weatherData.forecast} />
 
             <div className="self-end justify-self-end max-sm:order-2">
-              <SettingsButton />
+              <SettingsButton
+                openSettingsFunction={() => setModalOpen("settings_page")}
+              />
             </div>
           </div>
-          { isLocationPickerOpen && <LocationPicker closeFunction={() => setIsLocationPickerOpen(false)} onSelect={handleLocationChange} /> }
+
+          {modalOpen === "location_picker" && (
+            <LocationPicker
+              closeFunction={() => setModalOpen(null)}
+              onSelect={handleLocationChange}
+            />
+          )}
+
+          {modalOpen === "settings_page" && (
+            <SettingsModal closeFunction={() => setModalOpen(null)} />
+          )}
         </>
       ) : errorData ? (
-        <ErrorPopup errorData={errorData} refreshFunction={refreshWeatherData} />
+        <ErrorPopup
+          errorData={errorData}
+          refreshFunction={refreshWeatherData}
+        />
       ) : (
         <LoadingPopup />
       )}

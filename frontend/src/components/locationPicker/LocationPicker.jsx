@@ -83,7 +83,7 @@ export default function LocationPicker({ closeFunction, onSelect }) {
   }
 
   return (
-    <FullScreenMenu closeFunction={closeFunction} fullHeight={true}>
+    <FullScreenMenu closeFunction={closeFunction} fullHeight={false}>
       <LocationPickerSearchBar
         closeFunction={closeFunction}
         searchLocation={searchLocation}
