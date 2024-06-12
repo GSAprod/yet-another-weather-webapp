@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 /**
  * Weather icon selector
  */
-export default function WeatherIcon({ condition, timeOfDay, size }) {
+export default function WeatherIcon({ condition, timeOfDay  = "day", size }) {
   const iconSizeCss =
     size === "large"
       ? "h-16 w-auto fill-white"
@@ -22,13 +22,13 @@ export default function WeatherIcon({ condition, timeOfDay, size }) {
   switch (condition) {
     case "sunny":
     default:
-      return timeOfDay === "night" ? (
-        <Moon className={iconSizeCss} />
-      ) : (
+      return timeOfDay === "day" ? (
         <Sun className={iconSizeCss} />
+      ) : (
+        <Moon className={iconSizeCss} />
       );
     case "partly-cloudy":
-      return timeOfDay === "night" ? (
+      return timeOfDay === "day" ? (
         <CloudSun className={iconSizeCss} />
       ) : (
         <CloudMoon className={iconSizeCss} />
