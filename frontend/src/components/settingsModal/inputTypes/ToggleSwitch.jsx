@@ -5,7 +5,7 @@ export default function ToggleSwitch() {
 
   return (
     <div
-      className={"bg-black/20 box-content w-11 h-6 rounded-full border border-black/20 " +
+      className={"bg-black/20 box-content w-11 h-6 shrink-0 rounded-full border border-black/20 " +
         "shadow-md cursor-pointer hover:brightness-90" + (active ? " bg-white/20" : "")}
       onClick={() => setActive(!active)}>
       <div
