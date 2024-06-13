@@ -11,7 +11,7 @@ export default function ListBox({ options }) {
           className={
             "px-2.5 py-1 h-fit text-xs text-nowrap w-max bg-black/20 first:rounded-l " +
             "last:rounded-r cursor-pointer border-y first:border-l last:border-r border-black/20 " +
-            (selected === option.id ? "bg-white/70 text-black " : "")
+            "hover:brightness-90 " + (selected === option.id ? "bg-white/70 text-black " : "")
           }
           key={option.id}
           onClick={() => setSelected(option.id)}>
