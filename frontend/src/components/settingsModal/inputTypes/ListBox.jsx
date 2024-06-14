@@ -9,9 +9,9 @@ export default function ListBox({ options }) {
       {options.map((option) => (
         <div
           className={
-            "px-2.5 py-1 h-fit text-xs text-nowrap w-max bg-black/20 first:rounded-l " +
-            "last:rounded-r cursor-pointer border-y first:border-l last:border-r border-black/20 " +
-            "hover:brightness-90 " + (selected === option.id ? "bg-white/70 text-black " : "")
+            "px-2.5 py-1 h-fit text-xs text-nowrap w-max first:rounded-l " +
+            "last:rounded-r cursor-pointer " +
+            "hover:brightness-90 " + (selected === option.id ? "bg-white/70 text-black " : "bg-black/20 ")
           }
           key={option.id}
           onClick={() => setSelected(option.id)}>
