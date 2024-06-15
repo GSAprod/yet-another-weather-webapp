@@ -5,7 +5,6 @@ import FullScreenMenu from "../FullScreenMenu";
 import LocationPickerSearchBar from "./LocationPickerSearchBar";
 import LocationSearchResultsList from "./LocationSearchResultsList";
 import LocationPickerError from "./LocationPickerError";
-import Cookies from "js-cookie";
 
 /**
  * Modal for searching and selecting a location for fetching the weather.
@@ -77,7 +76,7 @@ export default function LocationPicker({ closeFunction, onSelect }) {
 
   async function selectLocation(resultId) {
     const selected = searchResults.find((result) => result.id === resultId);
-    Cookies.set("location", JSON.stringify(selected));
+    localStorage.setItem("location", JSON.stringify(selected));
 
     onSelect();
   }

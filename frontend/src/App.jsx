@@ -15,7 +15,6 @@ import SettingsButton from "./components/SettingsButton";
 import ErrorPopup from "./components/ErrorPopup";
 import LoadingPopup from "./components/LoadingPopup";
 import LocationPicker from "./components/locationPicker/LocationPicker";
-import Cookies from "js-cookie";
 import SettingsModal from "./components/settingsModal/SettingsModal";
 
 function App() {
@@ -40,7 +39,7 @@ function App() {
   }
 
   function getStoredLocation() {
-    let locationData = Cookies.get("location");
+    let locationData = localStorage.getItem("location");
     let location;
 
     if (locationData === undefined) {
@@ -52,7 +51,7 @@ function App() {
         name: "Lisbon",
         description: "Portugal",
       };
-      Cookies.set("location", JSON.stringify(location));
+      localStorage.setItem("location", JSON.stringify(location));
     } else {
       location = JSON.parse(locationData);
     }

@@ -2,7 +2,6 @@ import { func } from "prop-types";
 import FullScreenMenu from "../FullScreenMenu";
 import SettingsSection from "./SettingsSection";
 import SettingsItem from "./SettingsItem";
-import ToggleSwitch from "./inputTypes/ToggleSwitch";
 
 export default function SettingsModal({ closeFunction }) {
   return (
@@ -25,14 +24,8 @@ export default function SettingsModal({ closeFunction }) {
           description="Change the unit used for showing temperatures on the app"
           type="listbox"
           values={[
-            {
-              name: "ºC",
-              id: "C",
-            },
-            {
-              name: "ºF",
-              id: "F",
-            },
+            { name: "ºC", id: "C" },
+            { name: "ºF", id: "F" },
           ]}
         />
         <SettingsItem
@@ -40,14 +33,8 @@ export default function SettingsModal({ closeFunction }) {
           description="Change the unit used for showing the wind speed"
           type="listbox"
           values={[
-            {
-              name: "km/h",
-              id: "kmh",
-            },
-            {
-              name: "mph",
-              id: "mph",
-            },
+            { name: "km/h", id: "kmh" },
+            { name: "mph", id: "mph" },
           ]}
         />
       </SettingsSection>

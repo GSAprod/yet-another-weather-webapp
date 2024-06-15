@@ -1,4 +1,4 @@
-import { any, string } from "prop-types";
+import { array, string } from "prop-types";
 import ListBox from "./inputTypes/ListBox";
 import ToggleSwitch from "./inputTypes/ToggleSwitch";
 
@@ -27,5 +27,5 @@ SettingsItem.propTypes = {
   title: string.isRequired,
   description: string.isRequired,
   type: string.isRequired,
-  values: any // TODO Check if this can be changed
+  values: array
 }
