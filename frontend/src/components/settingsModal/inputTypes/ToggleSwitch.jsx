@@ -1,8 +1,12 @@
-import { func } from "prop-types";
-import { useState } from "react";
+import { bool, func } from "prop-types";
+import { useEffect, useState } from "react";
 
-export default function ToggleSwitch({ changeValue }) {
-  const [active, setActive] = useState(false);
+export default function ToggleSwitch({ changeValue, isTrue }) {
+  const [active, setActive] = useState(isTrue);
+
+  useEffect(() => {
+    setActive(isTrue);
+  }, [isTrue])
 
   async function handleToggle() {
     await changeValue(!active);
@@ -25,4 +29,5 @@ export default function ToggleSwitch({ changeValue }) {
 
 ToggleSwitch.propTypes = {
   changeValue: func.isRequired,
+  isTrue: bool,
 }

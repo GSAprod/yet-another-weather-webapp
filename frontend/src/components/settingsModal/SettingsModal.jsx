@@ -2,10 +2,15 @@ import { func } from "prop-types";
 import FullScreenMenu from "../FullScreenMenu";
 import SettingsSection from "./SettingsSection";
 import SettingsItem from "./SettingsItem";
+import useSettings from "../../hooks/useSettings";
 
 export default function SettingsModal({ closeFunction }) {
+  const [settings, changeSettings] = useSettings();
+
   function handleValueChange(settingId, value) {
-    console.log(settingId + " was changed to " + value);
+    const changed = {};
+    changed[settingId] = value;
+    changeSettings(changed);
   }
 
   return (
@@ -32,6 +37,7 @@ export default function SettingsModal({ closeFunction }) {
               { name: "ºC", id: "C" },
               { name: "ºF", id: "F" },
             ]}
+            activeValue={settings.temp_unit}
             changeValue={(value) => handleValueChange("temp_unit", value)}
           />
           <SettingsItem
@@ -43,6 +49,7 @@ export default function SettingsModal({ closeFunction }) {
               { name: "mph", id: "mph" },
               { name: "knots", id: "kn" },
             ]}
+            activeValue={settings.speed_unit}
             changeValue={(value) => handleValueChange("speed_unit", value)}
           />
         </SettingsSection>
@@ -52,9 +59,7 @@ export default function SettingsModal({ closeFunction }) {
             title="Dynamic Background"
             description="Change the background depending on the current weather condition"
             type="switch"
-            changeValue={(value) =>
-              handleValueChange("dynamic_background", value)
-            }
+            activeValue={true}
           />
         </SettingsSection>
       </div>

@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function ListBox({ options, changeValue }) {
+export default function ListBox({ options, active, changeValue }) {
   const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    setSelected(active)
+  },[active]);
 
   function handleSelection(id) {
     changeValue(id);
@@ -34,5 +38,6 @@ ListBox.propTypes = {
       id: PropTypes.string,
     })
   ).isRequired,
+  active: PropTypes.string,
   changeValue: PropTypes.func.isRequired,
 };

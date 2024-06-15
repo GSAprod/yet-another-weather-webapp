@@ -36,12 +36,12 @@ export default function LocationPicker({ closeFunction, onSelect }) {
     try {
       const response = await client.get("/search_location", {
         params: {
-          name: searchTerm,
+          name: searchTerm.trim(),
         },
         timeout: 10000,
       });
       if (response.data.length === 0) {
-        setErrorMessage("Could not find results for " + searchTerm + ".");
+        setErrorMessage("Could not find results for " + searchTerm.trim() + ".");
         setSearchResults([]);
         setIsSearching(false);
       } else {
