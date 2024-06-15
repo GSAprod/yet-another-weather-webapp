@@ -4,6 +4,10 @@ import SettingsSection from "./SettingsSection";
 import SettingsItem from "./SettingsItem";
 
 export default function SettingsModal({ closeFunction }) {
+  function handleValueChange(settingId, value) {
+    console.log(settingId + " was changed to " + value);
+  }
+
   return (
     <FullScreenMenu closeFunction={closeFunction} fullHeight={true}>
       <div className="mx-5 mt-5 mb-2 flex justify-between items-center">
@@ -18,35 +22,42 @@ export default function SettingsModal({ closeFunction }) {
       </div>
       <div className="mx-4 border border-transparent border-b-white/20 mb-5" />
 
-      <SettingsSection title="Units and measures">
-        <SettingsItem
-          title="Temperature Unit"
-          description="Change the unit used for showing temperatures on the app"
-          type="listbox"
-          values={[
-            { name: "ºC", id: "C" },
-            { name: "ºF", id: "F" },
-          ]}
-        />
-        <SettingsItem
-          title="Speed Unit"
-          description="Change the unit used for showing the wind speed"
-          type="listbox"
-          values={[
-            { name: "km/h", id: "kmh" },
-            { name: "mph", id: "mph" },
-            { name: "knots", id: "kn"},
-          ]}
-        />
-      </SettingsSection>
+      <div className="overflow-scroll">
+        <SettingsSection title="Units and measures">
+          <SettingsItem
+            title="Temperature Unit"
+            description="Change the unit used for showing temperatures on the app"
+            type="listbox"
+            values={[
+              { name: "ºC", id: "C" },
+              { name: "ºF", id: "F" },
+            ]}
+            changeValue={(value) => handleValueChange("temp_unit", value)}
+          />
+          <SettingsItem
+            title="Speed Unit"
+            description="Change the unit used for showing the wind speed"
+            type="listbox"
+            values={[
+              { name: "km/h", id: "kmh" },
+              { name: "mph", id: "mph" },
+              { name: "knots", id: "kn" },
+            ]}
+            changeValue={(value) => handleValueChange("speed_unit", value)}
+          />
+        </SettingsSection>
 
-      <SettingsSection title="Background">
-        <SettingsItem
-          title="Dynamic Background"
-          description="Change the background depending on the current weather condition"
-          type="switch"
-        />
-      </SettingsSection>
+        <SettingsSection title="Background">
+          <SettingsItem
+            title="Dynamic Background"
+            description="Change the background depending on the current weather condition"
+            type="switch"
+            changeValue={(value) =>
+              handleValueChange("dynamic_background", value)
+            }
+          />
+        </SettingsSection>
+      </div>
     </FullScreenMenu>
   );
 }

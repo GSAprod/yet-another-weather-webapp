@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-export default function ListBox({ options }) {
+export default function ListBox({ options, changeValue }) {
   const [selected, setSelected] = useState(null);
+
+  function handleSelection(id) {
+    changeValue(id);
+    setSelected(id);
+  }
 
   return (
     <div className="flex w-fit h-fit rounded shadow-md">
@@ -14,7 +19,7 @@ export default function ListBox({ options }) {
             "hover:brightness-90 " + (selected === option.id ? "bg-white/70 text-black " : "bg-black/20 ")
           }
           key={option.id}
-          onClick={() => setSelected(option.id)}>
+          onClick={() => handleSelection(option.id)}>
           {option.name}
         </div>
       ))}
@@ -28,5 +33,6 @@ ListBox.propTypes = {
       name: PropTypes.string,
       id: PropTypes.string,
     })
-  ),
+  ).isRequired,
+  changeValue: PropTypes.func.isRequired,
 };
