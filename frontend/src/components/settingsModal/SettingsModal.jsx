@@ -35,6 +35,7 @@ export default function SettingsModal({ closeFunction }) {
           values={[
             { name: "km/h", id: "kmh" },
             { name: "mph", id: "mph" },
+            { name: "knots", id: "kn"},
           ]}
         />
       </SettingsSection>

@@ -109,9 +109,21 @@ export default class OpenMeteoAPI {
         return JSON.stringify(formattedOutput);
     }
 
-    async get_weather(locationParams) {
+    async get_weather(locationParams, optionParams) {
         if (TEST_MODE)
             return [200, await this.format_response(OpenWeatherTest, locationParams.name)];
+
+        const temp_unit = {
+            "C": "celsius",
+            "F": "fahrenheit",
+        }[optionParams.temp_unit];
+
+        const speed_unit = {
+            "kmh": "kmh",
+            "ms": "ms",
+            "mph": "mph",
+            "kn": "kn",
+        }[optionParams.speed_unit];
 
         try {
             const response = await this.endpoint.get("/forecast", {
@@ -122,7 +134,9 @@ export default class OpenMeteoAPI {
                     timeformat: "unixtime",
                     current: "temperature_2m,relative_humidity_2m,is_day,weather_code,wind_speed_10m,wind_direction_10m",
                     daily: "weather_code,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max",
-                    forecast_days: 7
+                    forecast_days: 7,
+                    temperature_unit: temp_unit,
+                    wind_speed_unit: speed_unit,
                 }
             });
             

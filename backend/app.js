@@ -16,7 +16,12 @@ app.get("/get_weather", async (req, res) => {
     longitude: req.query.longitude,
   }
 
-  const response = await service.get_weather(locationParams);
+  let optionParams = {
+    temp_unit: req.query.temp_unit,
+    speed_unit: req.query.speed_unit,
+  }
+
+  const response = await service.get_weather(locationParams, optionParams);
   res.status(response[0]).send(response[1]);
 });
 

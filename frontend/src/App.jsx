@@ -38,11 +38,28 @@ function App() {
     return imgMetadata.foggy.day[0].path;
   }
 
+  function getStoredSettings() {
+    let settingsData = localStorage.getItem("settings");
+    let settings;
+
+    if (!settingsData) {
+      // Use a default set of settings for the 1st access to the webapp
+      settings = {
+        temp_unit: "C",
+        speed_unit: "kmh",
+      };
+      localStorage.setItem("settings", JSON.stringify(settings));
+    } else {
+      settings = JSON.parse(settingsData);
+    }
+    return settings;
+  }
+
   function getStoredLocation() {
     let locationData = localStorage.getItem("location");
     let location;
 
-    if (locationData === undefined) {
+    if (!locationData) {
       // Add a default location for the 1st access to the website
       location = {
         id: 2267057,
@@ -59,6 +76,7 @@ function App() {
   }
 
   async function fetchWeatherData(attempt = 1) {
+    const settings = getStoredSettings();
     const location = getStoredLocation();
     try {
       const response = await client.get("/get_weather", {
@@ -67,6 +85,8 @@ function App() {
           latitude: location.latitude,
           longitude: location.longitude,
           name: location.name + ", " + location.description,
+          temp_unit: settings.temp_unit,
+          speed_unit: settings.speed_unit,
         },
       });
       setWeatherData(response.data);
