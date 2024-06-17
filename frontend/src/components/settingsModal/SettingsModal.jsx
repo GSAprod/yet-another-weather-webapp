@@ -2,10 +2,10 @@ import { func } from "prop-types";
 import FullScreenMenu from "../FullScreenMenu";
 import SettingsSection from "./SettingsSection";
 import SettingsItem from "./SettingsItem";
-import useSettings from "../../hooks/useSettings";
+import { useSettingsContext } from "../../context/SettingsContext";
 
 export default function SettingsModal({ closeFunction }) {
-  const [settings, changeSettings] = useSettings();
+  const {settings, changeSettings} = useSettingsContext();
 
   function handleValueChange(settingId, value) {
     const changed = {};

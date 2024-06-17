@@ -16,6 +16,7 @@ import ErrorPopup from "./components/ErrorPopup";
 import LoadingPopup from "./components/LoadingPopup";
 import LocationPicker from "./components/locationPicker/LocationPicker";
 import SettingsModal from "./components/settingsModal/SettingsModal";
+import { SettingsProvider } from "./context/SettingsContext";
 
 function App() {
   const [errorData, setErrorData] = useState(undefined);
@@ -138,6 +139,7 @@ function App() {
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
       {weatherData && !weatherData.error ? (
         <>
+        <SettingsProvider>
           <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
             <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
               <Location
@@ -200,6 +202,7 @@ function App() {
           {modalOpen === "settings_page" && (
             <SettingsModal closeFunction={() => setModalOpen(null)} />
           )}
+        </SettingsProvider>
         </>
       ) : errorData ? (
         <ErrorPopup
