@@ -5,7 +5,7 @@ import SettingsItem from "./SettingsItem";
 import { useSettingsContext } from "../../context/SettingsContext";
 
 export default function SettingsModal({ closeFunction }) {
-  const {settings, changeSettings} = useSettingsContext();
+  const { settings, changeSettings } = useSettingsContext();
 
   function handleValueChange(settingId, value) {
     const changed = {};

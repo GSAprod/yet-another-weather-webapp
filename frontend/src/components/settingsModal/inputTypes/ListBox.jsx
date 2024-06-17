@@ -5,8 +5,8 @@ export default function ListBox({ options, active, changeValue }) {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    setSelected(active)
-  },[active]);
+    setSelected(active);
+  }, [active]);
 
   function handleSelection(id) {
     changeValue(id);
@@ -19,8 +19,10 @@ export default function ListBox({ options, active, changeValue }) {
         <div
           className={
             "px-2.5 py-1 h-fit text-xs text-nowrap w-max first:rounded-l " +
-            "last:rounded-r cursor-pointer " +
-            "hover:brightness-90 " + (selected === option.id ? "bg-white/70 text-black " : "bg-black/20 ")
+            "last:rounded-r cursor-pointer hover:brightness-90 " +
+            (selected === option.id
+              ? "bg-white/70 text-black "
+              : "bg-black/20 ")
           }
           key={option.id}
           onClick={() => handleSelection(option.id)}>

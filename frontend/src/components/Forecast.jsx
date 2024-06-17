@@ -6,7 +6,6 @@ import WeatherIcon from "./WeatherIcon";
  * Located at the bottom-center of the page.
  */
 export default function Forecast({ data }) {
-
   // Convert the date given into an abbreviated form of a weekday.
   function epochToWeekDay() {
     const date = new Date(data.epoch_sec * 1000);

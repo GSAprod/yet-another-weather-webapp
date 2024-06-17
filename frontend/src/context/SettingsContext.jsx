@@ -8,7 +8,7 @@ export function SettingsProvider({ children }) {
   const [settings, changeSettings] = useSettings();
 
   return (
-    <SettingsContext.Provider value={{settings, changeSettings}}>
+    <SettingsContext.Provider value={{ settings, changeSettings }}>
       {children}
     </SettingsContext.Provider>
   );

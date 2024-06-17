@@ -11,18 +11,21 @@ export default function ForecastArea({ forecastData }) {
     <div
       className="col-span-3 max-sm:col-span-5 max-sm:order-1 justify-center flex gap-10 pb-7 
     max-sm:flex-col max-sm:gap-5">
-      {forecastData && forecastData.map(dayForecast => (
-        <Forecast key={uuid()} data={dayForecast} />
-      ))}
+      {forecastData &&
+        forecastData.map((dayForecast) => (
+          <Forecast key={uuid()} data={dayForecast} />
+        ))}
     </div>
   );
 }
 
 ForecastArea.propTypes = {
-  forecastData: PropTypes.arrayOf(PropTypes.exact({
-    epoch_sec: PropTypes.number,
-    condition: PropTypes.string,
-    temp_max: PropTypes.number,
-    temp_min: PropTypes.number
-  }))
-}
+  forecastData: PropTypes.arrayOf(
+    PropTypes.exact({
+      epoch_sec: PropTypes.number,
+      condition: PropTypes.string,
+      temp_max: PropTypes.number,
+      temp_min: PropTypes.number,
+    })
+  ),
+};

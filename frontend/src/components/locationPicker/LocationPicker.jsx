@@ -41,7 +41,9 @@ export default function LocationPicker({ closeFunction, onSelect }) {
         timeout: 10000,
       });
       if (response.data.length === 0) {
-        setErrorMessage("Could not find results for " + searchTerm.trim() + ".");
+        setErrorMessage(
+          "Could not find results for " + searchTerm.trim() + "."
+        );
         setSearchResults([]);
         setIsSearching(false);
       } else {

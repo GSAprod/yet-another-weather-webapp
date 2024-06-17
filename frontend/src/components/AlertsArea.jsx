@@ -4,7 +4,7 @@ import { CheckSquare } from "@phosphor-icons/react";
 import WeatherAlert from "./WeatherAlert";
 
 export default function AlertsArea({ alerts }) {
-  // Alerts will be shown if the prop is a non-empty list. Otherwise, 
+  // Alerts will be shown if the prop is a non-empty list. Otherwise,
   // we will just show a "No warnings issued" text
   return alerts && alerts.length != [] ? (
     <div className="flex flex-col gap-3">

@@ -6,17 +6,20 @@ export default function ToggleSwitch({ changeValue, isTrue }) {
 
   useEffect(() => {
     setActive(isTrue);
-  }, [isTrue])
+  }, [isTrue]);
 
   async function handleToggle() {
     await changeValue(!active);
-    setActive(prevVal => !prevVal);
+    setActive((prevVal) => !prevVal);
   }
 
   return (
     <div
-      className={"bg-black/20 box-content w-11 h-6 shrink-0 rounded-full shadow-md " +
-        "cursor-pointer hover:brightness-90" + (active ? " bg-white/20" : "")}
+      className={
+        "bg-black/20 box-content w-11 h-6 shrink-0 rounded-full shadow-md " +
+        "cursor-pointer hover:brightness-90" +
+        (active ? " bg-white/20" : "")
+      }
       onClick={() => handleToggle()}>
       <div
         className={
@@ -30,4 +33,4 @@ export default function ToggleSwitch({ changeValue, isTrue }) {
 ToggleSwitch.propTypes = {
   changeValue: func.isRequired,
   isTrue: bool,
-}
+};

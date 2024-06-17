@@ -45,7 +45,10 @@ export default function LocationPickerSearchBar({
         <MagnifyingGlass className="w-6 h-auto fill-white" />
       )}
 
-      <form action="#" className="w-full flex align-center" onSubmit={handleSubmit}>
+      <form
+        action="#"
+        className="w-full flex align-center"
+        onSubmit={handleSubmit}>
         <input
           className="w-full bg-transparent outline-none"
           placeholder="Search location"

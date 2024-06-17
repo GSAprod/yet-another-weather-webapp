@@ -7,7 +7,11 @@ export default function ApiCredits({ name, href }) {
   return (
     <div className="text-sm">
       Weather by{" "}
-      <a href={href} className="hover:underline" target="_blank" rel="noreferrer">
+      <a
+        href={href}
+        className="hover:underline"
+        target="_blank"
+        rel="noreferrer">
         {name}
       </a>
     </div>
@@ -16,5 +20,5 @@ export default function ApiCredits({ name, href }) {
 
 ApiCredits.propTypes = {
   name: string.isRequired,
-  href: string.isRequired
-}
+  href: string.isRequired,
+};

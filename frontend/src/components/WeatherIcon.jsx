@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 /**
  * Weather icon selector
  */
-export default function WeatherIcon({ condition, timeOfDay  = "day", size }) {
+export default function WeatherIcon({ condition, timeOfDay = "day", size }) {
   const iconSizeCss =
     size === "large"
       ? "h-16 w-auto fill-white"

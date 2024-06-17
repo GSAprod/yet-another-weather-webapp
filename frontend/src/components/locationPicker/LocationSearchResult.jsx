@@ -1,15 +1,21 @@
 import { string, func, bool } from "prop-types";
 import { useEffect, useRef } from "react";
 
-export default function LocationSearchResult({ name, description, onSelect, changeFocus, focused }) {
+export default function LocationSearchResult({
+  name,
+  description,
+  onSelect,
+  changeFocus,
+  focused,
+}) {
   const item = useRef(null);
 
   useEffect(() => {
     if (focused) {
       item.current.focus();
     }
-  }, [focused])
-  
+  }, [focused]);
+
   function handleKeyDown(e) {
     switch (e.key) {
       case "Enter":
@@ -32,7 +38,7 @@ export default function LocationSearchResult({ name, description, onSelect, chan
     <div
       className={
         "px-5 py-2 my-1 hover:bg-black/20 focus:bg-black/20 outline-none " +
-        "active:bg-black/30 cursor-pointer" 
+        "active:bg-black/30 cursor-pointer"
       }
       ref={item}
       tabIndex={0}
@@ -49,5 +55,5 @@ LocationSearchResult.propTypes = {
   description: string,
   onSelect: func.isRequired,
   changeFocus: func.isRequired,
-  focused: bool
+  focused: bool,
 };

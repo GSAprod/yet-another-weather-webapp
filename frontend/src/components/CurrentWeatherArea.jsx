@@ -51,6 +51,6 @@ CurrentWeatherArea.propTypes = {
     epoch_sec: PropTypes.number,
     temp: PropTypes.number,
     condition: PropTypes.string,
-    is_day: PropTypes.bool
+    is_day: PropTypes.bool,
   }),
 };

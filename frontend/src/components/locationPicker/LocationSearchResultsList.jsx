@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import LocationSearchResult from "./LocationSearchResult";
 import PropTypes from "prop-types";
 
-export default function LocationSearchResultsList({ resultsList, onSelect, focused }) {
+export default function LocationSearchResultsList({
+  resultsList,
+  onSelect,
+  focused,
+}) {
   const [focusedIndex, setFocusedIndex] = useState(-1);
 
   function changeFocus(index, direction) {
-    const newFocusedIndex =  index + (direction === "up" ? -1 : 1);
+    const newFocusedIndex = index + (direction === "up" ? -1 : 1);
     if (newFocusedIndex < 0 || newFocusedIndex >= resultsList.map) return;
 
     setFocusedIndex(newFocusedIndex);
@@ -18,7 +22,7 @@ export default function LocationSearchResultsList({ resultsList, onSelect, focus
     } else {
       setFocusedIndex(-1);
     }
-  }, [focused])
+  }, [focused]);
 
   return (
     // TODO Enable scrolling
@@ -48,5 +52,5 @@ LocationSearchResultsList.propTypes = {
     })
   ),
   onSelect: PropTypes.func.isRequired,
-  focused: PropTypes.bool
+  focused: PropTypes.bool,
 };
