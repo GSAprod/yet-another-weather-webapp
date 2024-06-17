@@ -16,9 +16,11 @@ import ErrorPopup from "./components/ErrorPopup";
 import LoadingPopup from "./components/LoadingPopup";
 import LocationPicker from "./components/locationPicker/LocationPicker";
 import SettingsModal from "./components/settingsModal/SettingsModal";
-import { SettingsProvider } from "./context/SettingsContext";
+import { useSettingsContext } from "./context/SettingsContext";
 
 function App() {
+  const { settings } = useSettingsContext();
+
   const [errorData, setErrorData] = useState(undefined);
   const [weatherData, setWeatherData] = useState();
 
@@ -37,23 +39,6 @@ function App() {
   function getBackgroundImage() {
     // TODO Change picture depending on weather forecast
     return imgMetadata.foggy.day[0].path;
-  }
-
-  function getStoredSettings() {
-    let settingsData = localStorage.getItem("settings");
-    let settings;
-
-    if (!settingsData) {
-      // Use a default set of settings for the 1st access to the webapp
-      settings = {
-        temp_unit: "C",
-        speed_unit: "kmh",
-      };
-      localStorage.setItem("settings", JSON.stringify(settings));
-    } else {
-      settings = JSON.parse(settingsData);
-    }
-    return settings;
   }
 
   function getStoredLocation() {
@@ -77,7 +62,6 @@ function App() {
   }
 
   async function fetchWeatherData(attempt = 1) {
-    const settings = getStoredSettings();
     const location = getStoredLocation();
     try {
       const response = await client.get("/get_weather", {
@@ -127,7 +111,7 @@ function App() {
     fetchWeatherData();
   }
 
-  function handleLocationChange() {
+  function handleModalSubmit() {
     setModalOpen(null);
     refreshWeatherData();
   }
@@ -139,70 +123,68 @@ function App() {
       style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
       {weatherData && !weatherData.error ? (
         <>
-          <SettingsProvider>
-            <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
-              <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
-                <Location
-                  locationName={weatherData.location}
-                  openPickerFunction={() => setModalOpen("location_picker")}
-                />
-              </div>
-
-              <div
-                className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 
-        max-md:col-span-2">
-                <CurrentWeatherArea currentWeather={weatherData.current} />
-              </div>
-
-              <div className="max-md:order-2 max-md:col-span-2">
-                <TemperatureArea
-                  maxTemp={weatherData.details.temp_max}
-                  minTemp={weatherData.details.temp_min}
-                />
-              </div>
-
-              <div
-                className="max-md:order-2 max-md:col-span-2 max-md:flex 
-        max-md:justify-center max-md:mb-10">
-                <WeatherDetailsArea weatherDetails={weatherData.details} />
-              </div>
-
-              <div className="max-md:order-1 max-sm:hidden">
-                <AlertsArea alerts={weatherData.alerts} />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-5">
-              <div className="flex flex-col justify-end gap-1 max-sm:col-span-4 max-sm:order-2">
-                <ApiCredits
-                  name={weatherData.api_name}
-                  href={weatherData.api_url}
-                />
-                <UnsplashCredits
-                  meta={{ imageUrl: "#", authorName: "Author", authorUrl: "#" }}
-                />
-              </div>
-
-              <ForecastArea forecastData={weatherData.forecast} />
-
-              <div className="self-end justify-self-end max-sm:order-2">
-                <SettingsButton
-                  openSettingsFunction={() => setModalOpen("settings_page")}
-                />
-              </div>
-            </div>
-
-            {modalOpen === "location_picker" && (
-              <LocationPicker
-                closeFunction={() => setModalOpen(null)}
-                onSelect={handleLocationChange}
+          <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
+            <div className="max-sm:col-span-2 max-sm:flex max-sm:justify-center">
+              <Location
+                locationName={weatherData.location}
+                openPickerFunction={() => setModalOpen("location_picker")}
               />
-            )}
+            </div>
 
-            {modalOpen === "settings_page" && (
-              <SettingsModal closeFunction={() => setModalOpen(null)} />
-            )}
-          </SettingsProvider>
+            <div
+              className="col-span-3 row-span-2 max-md:order-2 max-md:row-span-1 
+        max-md:col-span-2">
+              <CurrentWeatherArea currentWeather={weatherData.current} />
+            </div>
+
+            <div className="max-md:order-2 max-md:col-span-2">
+              <TemperatureArea
+                maxTemp={weatherData.details.temp_max}
+                minTemp={weatherData.details.temp_min}
+              />
+            </div>
+
+            <div
+              className="max-md:order-2 max-md:col-span-2 max-md:flex 
+        max-md:justify-center max-md:mb-10">
+              <WeatherDetailsArea weatherDetails={weatherData.details} />
+            </div>
+
+            <div className="max-md:order-1 max-sm:hidden">
+              <AlertsArea alerts={weatherData.alerts} />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-5">
+            <div className="flex flex-col justify-end gap-1 max-sm:col-span-4 max-sm:order-2">
+              <ApiCredits
+                name={weatherData.api_name}
+                href={weatherData.api_url}
+              />
+              <UnsplashCredits
+                meta={{ imageUrl: "#", authorName: "Author", authorUrl: "#" }}
+              />
+            </div>
+
+            <ForecastArea forecastData={weatherData.forecast} />
+
+            <div className="self-end justify-self-end max-sm:order-2">
+              <SettingsButton
+                openSettingsFunction={() => setModalOpen("settings_page")}
+              />
+            </div>
+          </div>
+
+          {modalOpen === "location_picker" && (
+            <LocationPicker
+              closeFunction={() => setModalOpen(null)}
+              onSelect={handleModalSubmit}
+            />
+          )}
+
+          {modalOpen === "settings_page" && (
+            <SettingsModal onClose={() => setModalOpen(null)} onChanged={handleModalSubmit} />
+          )}
         </>
       ) : errorData ? (
         <ErrorPopup

@@ -3,25 +3,68 @@ import FullScreenMenu from "../FullScreenMenu";
 import SettingsSection from "./SettingsSection";
 import SettingsItem from "./SettingsItem";
 import { useSettingsContext } from "../../context/SettingsContext";
+import { useEffect, useState } from "react";
 
-export default function SettingsModal({ closeFunction }) {
+export default function SettingsModal({ onClose, onChanged }) {
   const { settings, changeSettings } = useSettingsContext();
+  const [loaded, setLoaded] = useState(false);
+
+  const [toChange, setToChange] = useState({});
 
   function handleValueChange(settingId, value) {
-    const changed = {};
-    changed[settingId] = value;
-    changeSettings(changed);
+    if (settingId in settings && settings[settingId] === value) {
+      // If the value is reverted to the previous settings, delete it from the
+      // toChange variable. This will prevent unnecessary writes to localStorage
+      // and possible API calls that need to use the altered settings
+      setToChange((prev) => {
+        const changed = { ...prev };
+        delete changed[settingId];
+        return changed;
+      });
+    } else {
+      // If the value is different from the previous settings, add it to the list of
+      // things to change
+      setToChange((prev) => {
+        const changed = { ...prev };
+        changed[settingId] = value;
+        return changed;
+      });
+    }
   }
 
+  function handleClose() {
+    // If no settings are changed, simply close the menu without declaring changes
+    // were made
+    if (Object.keys(toChange).length === 0) {
+      onClose();
+      return;
+    }
+
+    // In this approach, the settings are only applied when exiting the SettingsModal
+    changeSettings(toChange);
+
+    // The useEffect hook below will then close the modal as soon as the
+    // "settings" state is changed
+  }
+
+  useEffect(() => {
+    // Prevent onChanged to be called while settings are loaded
+    if (!loaded) {
+      setLoaded(true);
+      return;
+    }
+    onChanged();
+  }, [settings]);
+
   return (
-    <FullScreenMenu closeFunction={closeFunction} fullHeight={true}>
+    <FullScreenMenu closeFunction={handleClose} fullHeight={true}>
       <div className="mx-5 mt-5 mb-2 flex justify-between items-center">
         <h1 className="text-2xl font-bold">Settings</h1>
 
         <button
           className="p-1 h-fit bg-black/25 rounded text-xs text-white/50 font-bold 
           select-none uppercase"
-          onClick={closeFunction}>
+          onClick={handleClose}>
           close
         </button>
       </div>
@@ -68,5 +111,6 @@ export default function SettingsModal({ closeFunction }) {
 }
 
 SettingsModal.propTypes = {
-  closeFunction: func.isRequired,
+  onClose: func.isRequired,
+  onChanged: func.isRequired,
 };
