@@ -2,12 +2,16 @@ import PropTypes from "prop-types";
 import WeatherDetail from "./WeatherDetail";
 
 import { Drop, Wind, Umbrella, Sunglasses } from "@phosphor-icons/react";
+import { useSettingsContext } from "../context/SettingsContext";
+import { formatSpeedUnit } from "../utils/unitFormatters";
 
 /**
  * Component group showing less important weather details about the current forecast,
  * more specifically, the humidity, wind speed, chance of rain and UV index.
  */
 export default function WeatherDetailsArea({ weatherDetails }) {
+  const { settings } = useSettingsContext();
+
   function getWindDirection() {
     return (
       weatherDetails.wind_direction && `(${weatherDetails.wind_direction})`
@@ -28,7 +32,9 @@ export default function WeatherDetailsArea({ weatherDetails }) {
         <WeatherDetail
           icon={Wind}
           name="Wind speed"
-          value={`${weatherDetails.wind_speed} km/h ${getWindDirection()}`}
+          value={`${weatherDetails.wind_speed} ${formatSpeedUnit(
+            settings.speed_unit
+          )} ${getWindDirection()}`}
         />
       )}
 
