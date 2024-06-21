@@ -33,6 +33,6 @@ app.get("/search_location", async (req, res) => {
   res.status(response[0]).send(response[1]);
 })
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Process started in port ${process.env.PORT || 3000}`);
+app.listen(process.env.PORT || 3000, process.env.IP || "localhost", () => {
+  console.log(`Process started in ${process.env.IP || "localhost"}:${process.env.PORT || 3000}`);
 });

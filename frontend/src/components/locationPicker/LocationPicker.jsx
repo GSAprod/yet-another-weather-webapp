@@ -19,8 +19,11 @@ export default function LocationPicker({ closeFunction, onSelect }) {
 
   const [isFocusedOnRes, setIsFocusedOnRes] = useState(false);
 
+  // Prepare the endpoint where the requests to get the weather will be made
+  const backend_ip = import.meta.env.VITE_BACKEND_IP || "localhost";
+  const backend_port = import.meta.env.VITE_BACKEND_PORT || 3000;
   const client = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: `http://${backend_ip}:${backend_port}`,
   });
 
   async function searchLocation(searchTerm) {

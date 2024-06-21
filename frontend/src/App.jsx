@@ -26,8 +26,11 @@ function App() {
 
   const [modalOpen, setModalOpen] = useState(null);
 
+  // Prepare the endpoint where the requests to get the weather will be made
+  const backend_ip = import.meta.env.VITE_BACKEND_IP || "localhost";
+  const backend_port = import.meta.env.VITE_BACKEND_PORT || 3000;
   const client = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: `http://${backend_ip}:${backend_port}`,
   });
 
   // Fetch the weather data as soon as the page loads up
@@ -183,7 +186,10 @@ function App() {
           )}
 
           {modalOpen === "settings_page" && (
-            <SettingsModal onClose={() => setModalOpen(null)} onChanged={handleModalSubmit} />
+            <SettingsModal
+              onClose={() => setModalOpen(null)}
+              onChanged={handleModalSubmit}
+            />
           )}
         </>
       ) : errorData ? (

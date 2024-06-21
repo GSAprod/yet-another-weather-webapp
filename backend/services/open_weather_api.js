@@ -4,7 +4,7 @@ import axios from "axios";
 
 //* Change this to true to use the test examples instead of making API calls.
 //* Preserves API quota.
-const TEST_MODE = true;
+const TEST_MODE = (process.env.USE_EXAMPLES === "true") || false;
 
 export default class OpenMeteoAPI {
     constructor() {
