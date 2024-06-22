@@ -1,94 +1,316 @@
 {
-    "sunny": {
-        "day": [
-            {
-                "path": "/imgMetadata/sunny/day/ben-collins-VOduaHPrLrs-unsplash.jpg",
-                "imgsrc": "https://unsplash.com/photos/green-grass-field-under-blue-sky-during-daytime-VOduaHPrLrs",
-                "authorname": "Ben Collins",
-                "authorlink": "https://unsplash.com/@bencollins"
-            }
-        ],
-        "night": [
-            {
-                "path": "/imgMetadata/sunny/night/henry-be-TSw0ua31yeQ-unsplash.jpg",
-                "imgsrc": "https://unsplash.com/photos/landscape-photography-of-mountain-range-at-night-TSw0ua31yeQ",
-                "authorname": "Henry Be",
-                "authorlink": "https://unsplash.com/@henry_be"
-            }
-        ]
-    },
-    "partly-cloudy":  {
-        "day": [
-            {
-                "path": "/imgMetadata/partlycloudy/day/peter-robbins-2anjW-hOiY0-unsplash.jpg",
-                "imgsrc": "https://unsplash.com/photos/a-view-of-a-mountain-range-with-trees-in-the-foreground-2anjW-hOiY0",
-                "authorname": "Peter Robbins",
-                "authorlink": "https://unsplash.com/@stonedrake33148"
-            }
-        ],
-        "night": [
-
-        ]
-    },
-    "cloudy": {
-        "day": [
-
-        ],
-        "night": [
-
-        ]
-    },
-    "foggy": {
-        "day": [
-            {
-                "path": "/imgMetadata/foggy/day/noaa-kcvlb727mn8-unsplash.jpg",
-                "imgsrc": "https://unsplash.com/photos/green-trees-on-mountain-under-cloudy-sky-during-daytime-kcvlb727mn8",
-                "authorname": "NOAA",
-                "autorlink": "https://unsplash.com/@noaa"
-            }
-        ],
-        "night": [
-
-        ]
-    },
-    "drizzle": {
-        "day": [
-
-        ],
-        "night": [
-
-        ]
-    },
-    "rain": {
-        "day": [
-
-        ],
-        "night": [
-
-        ]
-    },
-    "snow": {
-        "day": [
-
-        ],
-        "night": [
-
-        ]
-    },
-    "showers": {
-        "day": [
-
-        ],
-        "night": [
-
-        ]
-    },
-    "thunderstorm": {
-        "day": [
-
-        ],
-        "night": [
-
-        ]
-    }
+  "sunny": {
+    "day": [
+      {
+        "path": "/imgMetadata/ben-collins-VOduaHPrLrs-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/green-grass-field-under-blue-sky-during-daytime-VOduaHPrLrs",
+        "authorname": "Ben Collins",
+        "authorlink": "https://unsplash.com/@bencollins"
+      },
+      {
+        "path": "/imgMetadata/pedro-mealha-kCWKTI7OLQg-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/aerial-view-of-city-during-daytime-kCWKTI7OLQg",
+        "authorname": "Pedro Mealha",
+        "authorlink": "https://unsplash.com/@pedromealha"
+      },
+      {
+        "path": "/imgMetadata/garrett-sears-rXVFCA3fQ4I-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/landscape-photography-of-mountain-rXVFCA3fQ4I",
+        "authorname": "Garrett Sears",
+        "authorlink": "https://unsplash.com/@garrettsears"
+      }
+    ],
+    "night": [
+      {
+        "path": "/imgMetadata/henry-be-TSw0ua31yeQ-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/landscape-photography-of-mountain-range-at-night-TSw0ua31yeQ",
+        "authorname": "Henry Be",
+        "authorlink": "https://unsplash.com/@henry_be"
+      },
+      {
+        "path": "/imgMetadata/alvis-taurens-sulebp3PqXM-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/the-night-sky-is-reflected-in-the-water-sulebp3PqXM",
+        "authorname": "Alvis Taurēns",
+        "authorlink": "https://unsplash.com/@taalfoto"
+      },
+      {
+        "path": "/imgMetadata/johannes-plenio-DKix6Un55mw-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/black-sailing-boat-digital-wallpaper-DKix6Un55mw",
+        "authorname": "Johannes Plenio",
+        "authorlink": "https://unsplash.com/@jplenio"
+      }
+    ]
+  },
+  "partly-cloudy": {
+    "day": [
+      {
+        "path": "/imgMetadata/peter-robbins-2anjW-hOiY0-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/a-view-of-a-mountain-range-with-trees-in-the-foreground-2anjW-hOiY0",
+        "authorname": "Peter Robbins",
+        "authorlink": "https://unsplash.com/@stonedrake33148"
+      },
+      {
+        "path": "/imgMetadata/joshua-hibbert-HPffQyNYeVc-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/photography-of-blue-ocean-under-sky-HPffQyNYeVc",
+        "authorname": "Joshua Hibbert",
+        "authorlink": "https://unsplash.com/@joshnh"
+      },
+      {
+        "path": "/imgMetadata/chuttersnap-PLe8QlV67kg-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/white-and-teal-sky-PLe8QlV67kg",
+        "authorname": "CHUTTERSNAP",
+        "authorlink": "https://unsplash.com/@chuttersnap"
+      }
+    ],
+    "night": [
+      {
+        "path": "/imgMetadata/yousef-espanioly-uP1XEgK1JZo-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/gray-asphalt-road-uP1XEgK1JZo",
+        "authorname": "Yousef Espanioly",
+        "authorlink": "https://unsplash.com/@yespanioly"
+      },
+      {
+        "path": "/imgMetadata/dewang-gupta-SUJlA-aQhsA-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/gray-clouds-during-golden-hour-SUJlA-aQhsA",
+        "authorname": "Dewang Gupta",
+        "authorlink": "https://unsplash.com/@dewang"
+      },
+      {
+        "path": "/imgMetadata/martin-jernberg-UdURxHDhrgY-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/snow-covered-brown-mountain-UdURxHDhrgY",
+        "authorname": "Martin Jernberg",
+        "authorlink": "https://unsplash.com/@martinjernberg"
+      },
+      {
+        "path": "/imgMetadata/shot-by-cerqueira-NpF9JLGYfeQ-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/blue-and-white-starry-night-sky-NpF9JLGYfeQ",
+        "authorname": "Shot by Cerqueira",
+        "authorlink": "https://unsplash.com/@shotbycerqueira"
+      }
+    ]
+  },
+  "cloudy": {
+    "day": [
+      {
+        "path": "/imgMetadata/paul-hanaoka-7QM4xIKNaMw-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/seashore-during-daytime-7QM4xIKNaMw",
+        "authorname": "Paul Hanaoka",
+        "authorlink": "https://unsplash.com/@plhnk"
+      },
+      {
+        "path": "/imgMetadata/kenny-eliason-wJiqv3lQ-us-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/body-of-water-wJiqv3lQ-us",
+        "authorname": "Kenny Eliason",
+        "authorlink": "https://unsplash.com/@neonbrand"
+      },
+      {
+        "path": "/imgMetadata/michael-weidemann-55DcgF4ngZM-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/selective-focus-photography-of-mountain-beside-water-55DcgF4ngZM",
+        "authorname": "Michael Weidemann",
+        "authorlink": "https://unsplash.com/@michaelweidemann"
+      }
+    ],
+    "night": [
+      {
+        "path": "/imgMetadata/soliman-cifuentes-MNCed4aggfw-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/the-sun-is-setting-over-the-clouds-in-the-sky-MNCed4aggfw",
+        "authorname": "Soliman Cifuentes",
+        "authorlink": "https://unsplash.com/@aleexcif"
+      },
+      {
+        "path": "/imgMetadata/antoine-barres-o4u8pFwSiQE-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/white-house-with-green-grass-field-during-cloudy-day-photo-o4u8pFwSiQE",
+        "authorname": "Antoine Barrès",
+        "authorlink": "https://unsplash.com/@antoinebarres"
+      },
+      {
+        "path": "/imgMetadata/khamkeo-vilaysing-ew1emB5KjjY-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/misty-rock-formation-during-daytime-ew1emB5KjjY",
+        "authorname": "Khamkéo Vilaysing",
+        "authorlink": "https://unsplash.com/@mahkeo"
+      }
+    ]
+  },
+  "foggy": {
+    "day": [
+      {
+        "path": "/imgMetadata/noaa-kcvlb727mn8-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/green-trees-on-mountain-under-cloudy-sky-during-daytime-kcvlb727mn8",
+        "authorname": "NOAA",
+        "autorlink": "https://unsplash.com/@noaa"
+      },
+      {
+        "path": "/imgMetadata/artem-sapegin-e2uTOpgW5Ec-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/mountain-surrounded-with-fog-e2uTOpgW5Ec",
+        "authorname": "Artem Sapegin",
+        "authorlink": "https://unsplash.com/@sapegin"
+      },
+      {
+        "path": "/imgMetadata/john-towner-89PFnHKg8HE-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/birds-view-of-tall-trees-covered-with-smokes-89PFnHKg8HE",
+        "authorname": "JOHN TOWNER",
+        "authorlink": "https://unsplash.com/@heytowner"
+      }
+    ],
+    "night": [
+      {
+        "path": "/imgMetadata/todd-diemer-wL18o553Msc-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/green-grass-during-sunset-wL18o553Msc",
+        "authorname": "Todd Diemer",
+        "authorlink": "https://unsplash.com/@todd_diemer"
+      },
+      {
+        "path": "/imgMetadata/clyde-he-TEND07a9xDg-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/nature-photography-of-pine-trees-covered-by-fogs-TEND07a9xDg",
+        "authorname": "Clyde He",
+        "authorlink": "https://unsplash.com/@clyde_he"
+      },
+      {
+        "path": "/imgMetadata/cole-keister-16YZRWdu9dM-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/forest-covered-with-fogs-16YZRWdu9dM",
+        "authorname": "Cole Keister",
+        "authorlink": "https://unsplash.com/@coleito"
+      }
+    ]
+  },
+  "drizzle": {
+    "comment": "use rain/cloudy photos"
+  },
+  "rain": {
+    "day": [
+      {
+        "path": "/imgMetadata/kevin-wang-bI423DxLEYk-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/water-droplets-on-black-wooden-fence-bI423DxLEYk",
+        "authorname": "Kevin Wang",
+        "authorlink": "https://unsplash.com/@kevin_w_"
+      },
+      {
+        "path": "/imgMetadata/liv-bruce-8yt8kBuEqok-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/a-wooden-bench-with-rain-falling-down-on-it-8yt8kBuEqok",
+        "authorname": "Liv Bruce",
+        "authorlink": "https://unsplash.com/@livvie_bruce"
+      },
+      {
+        "path": "/imgMetadata/hannah-domsic-2_gJeve_CBY-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/autumn-leaves-on-body-of-water-2_gJeve_CBY",
+        "authorname": "Hannah Domsic",
+        "authorlink": "https://unsplash.com/@hannah_e_d"
+      }
+    ],
+    "night": [
+      {
+        "path": "/imgMetadata/slnc-gMF5EenmVPk-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/water-dew-in-glass-panel-gMF5EenmVPk",
+        "authorname": "SLNC",
+        "authorlink": "https://unsplash.com/@riverse"
+      },
+      {
+        "path": "/imgMetadata/blocks-fletcher-nuxCnUnXXG4-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/water-dew-on-glass-window-nuxCnUnXXG4",
+        "authorname": "Blocks Fletcher",
+        "authorlink": "https://unsplash.com/@blocksfletcher"
+      },
+      {
+        "path": "/imgMetadata/alex-dukhanov-ZxZQk7777R4-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/photo-of-body-of-water-and-droplets-ZxZQk7777R4",
+        "authorname": "Alex Dukhanov",
+        "authorlink": "https://unsplash.com/@argtone"
+      }
+    ]
+  },
+  "snow": {
+    "day": [
+      {
+        "path": "/imgMetadata/alex-gorham-iq8z1X9HV0E-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/road-surrounded-by-snow-iq8z1X9HV0E",
+        "authorname": "Alex Gorham",
+        "authorlink": "https://unsplash.com/@alexcgorham"
+      },
+      {
+        "path": "/imgMetadata/praveen-thirumurugan-HU_qIm86PcQ-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/snow-covered-mountain-under-white-clouds-during-daytime-HU_qIm86PcQ",
+        "authorname": "Praveen Thirumurugan",
+        "authorlink": "https://unsplash.com/@praveentcom"
+      },
+      {
+        "path": "/imgMetadata/giorgia-finazzi-e62AeaW8Ks8-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/a-snowy-landscape-with-trees-and-mountains-in-the-background-e62AeaW8Ks8",
+        "authorname": "Giorgia Finazzi",
+        "authorlink": "https://unsplash.com/@giorgiafinazzi_"
+      }
+    ],
+    "night": [
+      {
+        "path": "/imgMetadata/andreas-brun-Xd49lWksgg0-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/road-between-trees-during-daytime-Xd49lWksgg0",
+        "authorname": "Andréas BRUN",
+        "authorlink": "https://unsplash.com/@andreasbrun"
+      },
+      {
+        "path": "/imgMetadata/lightscape-LtnPejWDSAY-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/northern-lights-over-snow-capped-mountian-LtnPejWDSAY",
+        "authorname": "Lightscape",
+        "authorlink": "https://unsplash.com/@lightscape"
+      },
+      {
+        "path": "/imgMetadata/jonatan-pie-3N5ccOE3wGg-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/person-standing-surrounded-by-snowy-mountain-3N5ccOE3wGg",
+        "authorname": "Jonatan Pie",
+        "authorlink": "https://unsplash.com/@r3dmax"
+      },
+      {
+        "path": "/imgMetadata/benjamin-voros-phIFdC6lA4E-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/snow-mountain-under-stars-phIFdC6lA4E",
+        "authorname": "Benjamin Voros",
+        "authorlink": "https://unsplash.com/@vorosbenisop"
+      }
+    ]
+  },
+  "showers": {
+    "day": [
+      {
+        "path": "/imgMetadata/anik-deb-nath-iNdHV3LYY7M-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/a-bird-sitting-on-a-window-sill-in-the-rain-iNdHV3LYY7M",
+        "authorname": "Anik Deb Nath",
+        "authorlink": "https://unsplash.com/@aniknath"
+      },
+      {
+        "path": "/imgMetadata/tarun-raj-bn-4mE5rdxS81o-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/a-view-of-a-forest-through-a-rain-covered-window-4mE5rdxS81o",
+        "authorname": "TARUN RAJ BN",
+        "authorlink": "https://unsplash.com/@tarunrajbns"
+      },
+      {
+        "path": "/imgMetadata/inge-maria-pv2ZlDfstXc-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/timelapse-photography-of-water-drops-pv2ZlDfstXc",
+        "authorname": "Inge Maria",
+        "authorlink": "https://unsplash.com/@ingemusic"
+      }
+    ],
+    "night": [
+      {
+        "path": "/imgMetadata/anna-atkins-rNBaaxyeWWM-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/rain-dropping-from-roof-rNBaaxyeWWM",
+        "authorname": "Anna Atkins",
+        "authorlink": "https://unsplash.com/@ak1"
+      },
+      {
+        "path": "/imgMetadata/jan-zinnbauer-frxpgcpMySk-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/a-red-traffic-light-sitting-on-the-side-of-a-road-in-the-rain-frxpgcpMySk",
+        "authorname": "Jan Zinnbauer",
+        "authorlink": "https://unsplash.com/@jan_zinnbauer"
+      }
+    ]
+  },
+  "thunderstorm": {
+    "day": [
+      {
+        "path": "/imgMetadata/noaa-WHLI73X8tE0-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/cloud-to-ground-lightning-WHLI73X8tE0",
+        "authorname": "NOAA",
+        "authorlink": "https://unsplash.com/@noaa"
+      }
+    ],
+    "night": []
+  }
 }
