@@ -309,8 +309,39 @@
         "imgsrc": "https://unsplash.com/photos/cloud-to-ground-lightning-WHLI73X8tE0",
         "authorname": "NOAA",
         "authorlink": "https://unsplash.com/@noaa"
+      },
+      {
+        "path": "/imgMetadata/felix-mittermeier-L4-16dmZ-1c-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/clouds-with-thunder-digital-wallpaper-L4-16dmZ-1c",
+        "authorname": "Felix Mittermeier",
+        "authorlink": "https://unsplash.com/@felix_mittermeier"
+      },
+      {
+        "path": "/imgMetadata/eugene-triguba-Cm5zI68Wdew-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/grass-field-under-cloudy-sky-Cm5zI68Wdew",
+        "authorname": "Eugene Triguba",
+        "authorlink": "https://unsplash.com/@eugenetriguba"
       }
     ],
-    "night": []
+    "night": [
+      {
+        "path": "/imgMetadata/alexandre-brondino--bi8zhvPhVA-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/silhouette-of-city-buildings-under-cloudy-sky-during-sunset--bi8zhvPhVA",
+        "authorname": "Alexandre Brondino",
+        "authorlink": "https://unsplash.com/@brondia"
+      },
+      {
+        "path": "/imgMetadata/michael-d-2cDIzRnVq0Q-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/high-rise-buildings-2cDIzRnVq0Q",
+        "authorname": "Michael D",
+        "authorlink": "https://unsplash.com/@alienaperture"
+      },
+      {
+        "path": "/imgMetadata/sole-d-alessandro-g-L1B2jsok49A-unsplash.jpg",
+        "imgsrc": "https://unsplash.com/photos/city-skyline-during-night-time-L1B2jsok49A",
+        "authorname": "Sole D'Alessandro G.",
+        "authorlink": "https://unsplash.com/@s___d___g"
+      }
+    ]
   }
 }

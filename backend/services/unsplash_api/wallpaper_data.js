@@ -266,7 +266,29 @@ export default {
         imgsrc:
           "https://unsplash.com/photos/cloud-to-ground-lightning-WHLI73X8tE0",
       },
+      {
+        id: "Cm5zI68Wdew",
+        imgsrc: "https://unsplash.com/photos/grass-field-under-cloudy-sky-Cm5zI68Wdew"
+      },
+      {
+        id: "L4-16dmZ-1c",
+        imgsrc: "https://unsplash.com/photos/clouds-with-thunder-digital-wallpaper-L4-16dmZ-1c"
+      },
     ],
-    night: [],
+    night: [
+      {
+        id: "-bi8zhvPhVA",
+        imgsrc:
+          "https://unsplash.com/photos/silhouette-of-city-buildings-under-cloudy-sky-during-sunset--bi8zhvPhVA",
+      },
+      {
+        id: "2cDIzRnVq0Q",
+        imgsrc: "https://unsplash.com/photos/high-rise-buildings-2cDIzRnVq0Q",
+      },
+      {
+        id: "L1B2jsok49A",
+        imgsrc: "https://unsplash.com/photos/city-skyline-during-night-time-L1B2jsok49A"
+      }
+    ],
   },
 };
