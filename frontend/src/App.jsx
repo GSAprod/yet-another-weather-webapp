@@ -17,12 +17,14 @@ import LoadingPopup from "./components/LoadingPopup";
 import LocationPicker from "./components/locationPicker/LocationPicker";
 import SettingsModal from "./components/settingsModal/SettingsModal";
 import { useSettingsContext } from "./context/SettingsContext";
+import useWallpaper from "./hooks/useWallpaper";
 
 function App() {
   const { settings } = useSettingsContext();
 
   const [errorData, setErrorData] = useState(undefined);
   const [weatherData, setWeatherData] = useState();
+  const { wallpaper, changeWallpaper } = useWallpaper();
 
   const [modalOpen, setModalOpen] = useState(null);
 
@@ -41,7 +43,7 @@ function App() {
   // Get the background image as soon as the weather is fetched
   function getBackgroundImage() {
     // TODO Change picture depending on weather forecast
-    return imgMetadata.foggy.day[0].path;
+    return wallpaper.href || wallpaper.path;
   }
 
   function getStoredLocation() {
@@ -79,6 +81,8 @@ function App() {
       });
       setWeatherData(response.data);
       setErrorData(undefined);
+      changeWallpaper(response.data.current.condition, response.data.current.is_day);
+
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code

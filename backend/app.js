@@ -39,7 +39,7 @@ app.get("/get_wallpaper", async (req, res) => {
   let { type, is_day = true } = req.query;
   
   const response = await service.get_wallpaper(type, is_day);
-  res.status(response[0]).send(response[1]);
+  res.status(response.status).send(response.data);
 });
 
 app.listen(process.env.PORT || 3000, process.env.IP || "localhost", () => {

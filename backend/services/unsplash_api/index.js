@@ -20,7 +20,8 @@ export default class UnsplashAPI {
     const condition = type === "drizzle" ? "rain" : type;
     const time_of_day = is_day ? "day" : "night";
 
-    const photoId = "kcvlb727mn8"; // TODO: Choose an ID
+    const photosList = wallpaper_data[condition][time_of_day];
+    const photoId = photosList[Math.floor(Math.random() * photosList.length)].id;
     try {
       const response = await this.endpoint.get(`/photos/${photoId}`, {
         params: {
@@ -34,10 +35,14 @@ export default class UnsplashAPI {
         authorname: response.data.user.name,
         authorlink: response.data.user.links.html,
       };
-      return [200, formatted_response];
+      return {
+        status: 200,
+        data: formatted_response,
+      };
 
     } catch (error) {
       if (error.response) {
+        console.error(error.response.data);
         // TODO Error comes from Unsplash API
       } else {
         // TODO Error comes from REST API Connection
