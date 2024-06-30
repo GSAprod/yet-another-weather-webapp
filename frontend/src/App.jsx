@@ -81,8 +81,10 @@ function App() {
       });
       setWeatherData(response.data);
       setErrorData(undefined);
-      changeWallpaper(response.data.current.condition, response.data.current.is_day);
-
+      changeWallpaper(
+        response.data.current.condition,
+        response.data.current.is_day
+      );
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -126,10 +128,14 @@ function App() {
   return (
     <div
       className={`webapp-container p-6 border-box min-h-full flex flex-col 
-      bg-cover bg-center ${weatherData ? "justify-between" : "justify-center"}`}
-      >
-      <img className="fixed top-0 left-0 w-full h-full object-cover -z-10" src={getBackgroundImage("")} />
-      
+      bg-cover bg-center ${
+        weatherData ? "justify-between" : "justify-center"
+      }`}>
+      <img
+        className="fixed top-0 left-0 w-full h-full object-cover -z-10"
+        src={getBackgroundImage("")}
+      />
+
       {weatherData && !weatherData.error ? (
         <>
           <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
