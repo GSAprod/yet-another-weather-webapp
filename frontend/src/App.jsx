@@ -127,7 +127,9 @@ function App() {
     <div
       className={`webapp-container p-6 border-box min-h-full flex flex-col 
       bg-cover bg-center ${weatherData ? "justify-between" : "justify-center"}`}
-      style={{ backgroundImage: `url(${getBackgroundImage("")})` }}>
+      >
+      <img className="fixed top-0 left-0 w-full h-full object-cover -z-10" src={getBackgroundImage("")} />
+      
       {weatherData && !weatherData.error ? (
         <>
           <div className="grid grid-cols-5 gap-y-10 max-md:grid-cols-2">
