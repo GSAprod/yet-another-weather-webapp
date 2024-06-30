@@ -5,6 +5,13 @@ import wallpaper_data from "./wallpaper_data.js";
 //* Preserves API quota.
 const TEST_MODE = process.env.USE_EXAMPLES === "true" || false;
 
+const default_response = {
+  href: "/imgMetadata/noaa-kcvlb727mn8-unsplash.jpg",
+  imgsrc: "https://unsplash.com/photos/green-trees-on-mountain-under-cloudy-sky-during-daytime-kcvlb727mn8",
+  authorname: "NOAA",
+  authorlink: "https://unsplash.com/@noaa"
+}
+
 export default class UnsplashAPI {
   constructor() {
     this.endpoint = axios.create({
@@ -13,10 +20,13 @@ export default class UnsplashAPI {
     });
   }
 
-  format_wallpaper_response(data) {
-  }
-
   async get_wallpaper(type, is_day) {
+    if (TEST_MODE)
+      return {
+        status: 200,
+        data: default_response,
+      }
+
     const condition = type === "drizzle" ? "rain" : type;
     const time_of_day = is_day ? "day" : "night";
 
