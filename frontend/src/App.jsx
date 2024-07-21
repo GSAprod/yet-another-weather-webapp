@@ -176,9 +176,7 @@ function App() {
                 name={weatherData.api_name}
                 href={weatherData.api_url}
               />
-              <UnsplashCredits
-                meta={{ imageUrl: "#", authorName: "Author", authorUrl: "#" }}
-              />
+              <UnsplashCredits meta={wallpaper} />
             </div>
 
             <ForecastArea forecastData={weatherData.forecast} />

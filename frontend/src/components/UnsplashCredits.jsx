@@ -8,7 +8,7 @@ export default function UnsplashCredits({ meta }) {
   return (
     <div className="text-sm">
       <a
-        href={meta.imageUrl}
+        href={meta.imgsrc}
         className="hover:underline"
         target="_blank"
         rel="noreferrer">
@@ -16,11 +16,11 @@ export default function UnsplashCredits({ meta }) {
       </a>
       ,{" "}
       <a
-        href={meta.authorUrl}
+        href={meta.authorlink}
         className="hover:underline"
         target="_blank"
         rel="noreferrer">
-        {meta.authorName}
+        {meta.authorname}
       </a>
       ,{" "}
       <a
@@ -36,8 +36,8 @@ export default function UnsplashCredits({ meta }) {
 
 UnsplashCredits.propTypes = {
   meta: PropTypes.exact({
-    imageUrl: PropTypes.string.isRequired,
-    authorName: PropTypes.string.isRequired,
-    authorUrl: PropTypes.string.isRequired,
+    imgsrc: PropTypes.string.isRequired,
+    authorname: PropTypes.string.isRequired,
+    authorlink: PropTypes.string.isRequired,
   }),
 };
