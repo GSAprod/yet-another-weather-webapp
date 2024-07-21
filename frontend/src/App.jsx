@@ -166,7 +166,7 @@ function App() {
             </div>
 
             <div className="max-md:order-1 max-sm:hidden">
-              <AlertsArea alerts={weatherData.alerts} />
+              {weatherData.alerts && <AlertsArea alerts={weatherData.alerts} />}
             </div>
           </div>
 
