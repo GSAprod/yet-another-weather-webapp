@@ -35,7 +35,7 @@ export default function UnsplashCredits({ meta }) {
 }
 
 UnsplashCredits.propTypes = {
-  meta: PropTypes.exact({
+  meta: PropTypes.arrayOf({
     imgsrc: PropTypes.string.isRequired,
     authorname: PropTypes.string.isRequired,
     authorlink: PropTypes.string.isRequired,

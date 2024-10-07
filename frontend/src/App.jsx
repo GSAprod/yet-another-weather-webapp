@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import imgMetadata from "./imgMetadata.json";
 
 import Location from "./components/Location";
 import WeatherDetailsArea from "./components/WeatherDetailsArea";
@@ -171,7 +170,7 @@ function App() {
           </div>
 
           <div className="grid grid-cols-5">
-            <div className="flex flex-col justify-end gap-1 max-sm:col-span-4 max-sm:order-2">
+            <div className="flex flex-col justify-end gap-1 max-md:col-span-4 max-md:order-2">
               <ApiCredits
                 name={weatherData.api_name}
                 href={weatherData.api_url}
@@ -181,7 +180,7 @@ function App() {
 
             <ForecastArea forecastData={weatherData.forecast} />
 
-            <div className="self-end justify-self-end max-sm:order-2">
+            <div className="self-end justify-self-end max-md:order-2">
               <SettingsButton
                 openSettingsFunction={() => setModalOpen("settings_page")}
               />

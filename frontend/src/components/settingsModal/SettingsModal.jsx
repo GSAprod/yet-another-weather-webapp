@@ -97,14 +97,21 @@ export default function SettingsModal({ onClose, onChanged }) {
           />
         </SettingsSection>
 
-        <SettingsSection title="Background">
+        <SettingsSection title="About">
+          <SettingsItem title="Made by GSA prod." description="Version 0.1.1" />
+          <SettingsItem
+            title="Developed using React + Vite"
+            description="APIs used:           Unsplash, Open-meteo.com"
+          />
+        </SettingsSection>
+        {/*<SettingsSection title="Background">
           <SettingsItem
             title="Dynamic Background"
             description="Change the background depending on the current weather condition"
             type="switch"
             activeValue={true}
           />
-        </SettingsSection>
+        </SettingsSection>*/}
       </div>
     </FullScreenMenu>
   );
