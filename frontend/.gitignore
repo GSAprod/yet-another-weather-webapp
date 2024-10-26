@@ -27,3 +27,5 @@ dist-ssr
 .env
 
 imgMetadata/
+
+vite.config.js.timestamp*

@@ -83,3 +83,7 @@ npm run dev
 ```
 
 Congratulations! You should see the weather app running after opening a browser and navigating to [localhost:8000](http://localhost:8000/)!
+
+## License
+
+[GNU GPLv3](./LICENSE.txt)
