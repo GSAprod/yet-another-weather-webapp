@@ -1,6 +1,23 @@
 # Yet Another Weather Webapp
 
-<!-- Insert project description here -->
+Yet Another Weather Webapp provides a clean User Interface that allows you to view the weather in a simple and intuitive way. It contains only the most relevant information related to the current forecasts, presented on top of a dynamic wallpaper, that changes depending on the weather condition.
+
+![Main dashboard of Yet Another Weather Webapp, displaying Foggy weather forecast](./readme-img/weatherapp-foggy.png)
+
+<p float="left">
+  <img src="./readme-img/weatherapp-sunny.png" width="49.5%" alt="Main dashboard of Yet Another Weather Webapp, displaying Sunny weather forecast" />
+  <img src="./readme-img/weatherapp-cloudy.png" width="49.5%" alt="Main dashboard of Yet Another Weather Webapp, displaying Cloudy weather forecast" />
+</p>
+
+## Main features
+
+- Select your preferred location by typing the city and selecting from the list of results:
+  ![Location selection using a list of search results](readme-img/weatherapp-location.png)
+
+- Change the main units of temperature and speed:
+  ![Seetings page showing options for setting the units of temperature and speed](readme-img/weatherapp-settings.png)
+
+- Dynamically changing wallpaper depending on current weather status
 
 ## Configuration
 
